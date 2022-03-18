@@ -1,16 +1,5 @@
-<<<<<<< HEAD
 --  SQL Database for our dating website project
 --  Group 14 CS4416
-=======
--- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
---
--- Host: localhost:3306
--- Generation Time: May 30, 2018 at 09:00 AM
--- Server version: 5.7.22-0ubuntu0.16.04.1
--- PHP Version: 7.0.30-0ubuntu0.16.04.1
->>>>>>> c6039a066417c26ba5a9a69aa7ff60b610415af9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -20,13 +9,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
-<<<<<<< HEAD
-=======
---
--- Database: `ET4243_Sample`
---
->>>>>>> c6039a066417c26ba5a9a69aa7ff60b610415af9
 
 -- --------------------------------------------------------
 
@@ -78,7 +60,6 @@ CREATE TABLE `profile` (
   `Seeking` enum('Female','Male','Other') NOT NULL COMMENT 'See Drinker comment',
   `Institution` varchar(256) NOT NULL COMMENT 'Educational Institution that the user is studying at',
   `Course` varchar(256) NOT NULL COMMENT 'Course studied by user',
-<<<<<<< HEAD
   `Location` varchar(256) NOT NULL COMMENT 'Location of the user',
   `Instagram` varchar(30) NOT NULL COMMENT 'Instagram username of user',
   `Snapchat` varchar(30) NOT NULL COMMENT 'Snapchat username of user',
@@ -86,12 +67,6 @@ CREATE TABLE `profile` (
   `Description` blob NOT NULL COMMENT 'Blob type because this will contain a free text description of the person',
   `Banned` binary(1) NOT NULL COMMENT 'Has the user been banned by an admin?',
   `Photo` varchar(26) NOT NULL COMMENT 'We should allow users to upload photos to the site; this field contains the name of the photo they have uploaded'
-
-=======
-  `Description` blob NOT NULL COMMENT 'Blob type because this will contain a free text description of the person',
-  `Banned` binary(1) NOT NULL COMMENT 'Has the user been banned by an admin?',
-  `Photo` varchar(26) NOT NULL COMMENT 'We should allow users to upload photos to the site; this field contains the name of the photo they have uploaded'
->>>>>>> c6039a066417c26ba5a9a69aa7ff60b610415af9
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -107,13 +82,6 @@ CREATE TABLE `user` (
   `Surname` varchar(26) NOT NULL,
   `Password` varchar(256) NOT NULL COMMENT 'See video for information on how to encrypt password BEFORE storing it. Never store the user''s actual password.'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Store personal information about the user. ';
-
-<<<<<<< HEAD
-=======
---
--- Indexes for dumped tables
---
->>>>>>> c6039a066417c26ba5a9a69aa7ff60b610415af9
 
 --
 -- Indexes for table `AvailableInterests`
@@ -150,13 +118,6 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`UserID`);
 
 --
-<<<<<<< HEAD
-=======
--- Constraints for dumped tables
---
-
---
->>>>>>> c6039a066417c26ba5a9a69aa7ff60b610415af9
 -- Constraints for table `Connections`
 --
 ALTER TABLE `Connections`
