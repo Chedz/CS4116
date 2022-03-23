@@ -5,7 +5,7 @@
  <!DOCTYPE html>
  <html>
  <head>
-   <title></title>
+   <title>Home</title>
  </head>
  <body>
 
@@ -23,11 +23,26 @@
    }
     ?>
 
-   <form action = "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-    <p> First name:  <input type="text" name="firstname" value=""> </p>
-    <p> Surname:  <input type="text" name="surname" value=""> </p>
-     <input type="submit" name="submit" value="Submit">
-   </form>
+   <form action = "register.php" method="POST">
+    
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" name="email"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password"/>
+    </div>
+    <div class="form-group">
+        <label for="Firstname">First Name</label>
+        <input type="text" class="form-control" id="Firstname" name="Firstname"/>
+    </div>
+    <div class="form-group">
+        <label for="Surname">Last Name</label>
+        <input type="text" class="form-control" id="Surname" name="Surname"/>
+    </div>
+    <input type="submit" class="btn btn-primary"/>
+    </form>
 
  </body>
  </html>
