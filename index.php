@@ -1,5 +1,6 @@
 <?php
-  include_once 'includes/dbh.inc.php';
+  require_once 'includes/dbh.inc.php';
+  $mysqli = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
  ?>
 
  <!DOCTYPE html>
@@ -21,10 +22,13 @@
      echo "First name:".$_POST['firstname'].'<br />';
      echo "Surname:".$_POST['surname'].'<br />';
    }
+
+   //$mysqli->close();
+   closeConnection($mysqli);
     ?>
 
    <form action = "register.php" method="POST">
-    
+
     <div class="form-group">
         <label for="email">Email</label>
         <input type="text" class="form-control" id="email" name="email"/>

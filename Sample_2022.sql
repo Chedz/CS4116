@@ -78,6 +78,7 @@ CREATE TABLE `profile` (
 CREATE TABLE `user` (
   `UserID` int(11) NOT NULL,
   `Handle` varchar(26) NOT NULL,
+  `Email` varchar(320) NOT NULL,
   `Firstname` varchar(26) NOT NULL,
   `Surname` varchar(26) NOT NULL,
   `Password` varchar(256) NOT NULL COMMENT 'See video for information on how to encrypt password BEFORE storing it. Never store the user''s actual password.'
