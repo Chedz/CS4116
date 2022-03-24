@@ -28,7 +28,7 @@ if(isset($_POST['search']))  {
 <head>
 
 <title>Search</title>
-<meta http-equiv = "refresh" content = "3; url = http://14-cs4116.infinityfreeapp.com/login.php" />
+<meta http-equiv = "refresh" content = "3; url = http://14-cs4116.infinityfreeapp.com/search.php" />
 
 </head>
 
