@@ -28,7 +28,8 @@ if(isset($_POST['search']))  {
 <head>
 
 <title>Search</title>
-<meta http-equiv = "refresh" content = "3; url = http://14-cs4116.infinityfreeapp.com/search.php" />
+<!--<meta http-equiv = "Content-Type" content = "text/html; url = http://14-cs4116.infinityfreeapp.com/search.php" />-->
+<meta http-equiv = "Content-Type" content = "text/html; charset=utf-8" />
 
 </head>
 
