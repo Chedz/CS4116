@@ -11,6 +11,9 @@
  <body>
 
    <?php
+   session_start();
+   if(!empty($_SESSION['loggedin'])){ header("location: home.php");}  //check if user already logged in
+
    echo "_POST array";
    pre_r($_POST);
    echo "_GET array";

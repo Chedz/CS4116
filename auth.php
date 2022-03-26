@@ -6,6 +6,9 @@
 </head>
 <body>
 <?php
+    session_start();
+    if(!empty($_SESSION['loggedin'])){ header("location: home.php");}  //check if user already logged in
+    // print_r($_POST);
     $email = $_POST['email'];
     $password = $_POST['password'];
 
@@ -23,6 +26,11 @@
             $data = $stmt_result->fetch_assoc();
             if($data['Password'] === $password) {
                 echo "<h1>Login Success</h1>";
+                $_SESSION['loggedin'] = true;
+                $_SESSION['username'] = $username;
+                echo "Session variables are set.";
+                print_r($_SESSION);
+                if(!empty($_SESSION['loggedin'])){ header("location: home.php");}
             } else {
                 echo "<h1>Incorrect email/password</h1>";
             }

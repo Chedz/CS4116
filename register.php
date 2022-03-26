@@ -7,6 +7,9 @@
  <body>
 
    <?php
+   session_start();
+   if(!empty($_SESSION['loggedin'])){ header("location: home.php");}  //check if user already logged in
+   
     $email = $_POST['email'];
     $password = $_POST['password'];
     $Firstname = $_POST['Firstname'];
