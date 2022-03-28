@@ -7,7 +7,7 @@
     <?php
         session_start();
         if(!empty($_SESSION['loggedin'])){ header("location: home.php");}  //check if user already logged in
-        echo "Test login page";
+        //echo "Test login page";
     ?>
 
     <h2>Login</h2>
@@ -22,6 +22,18 @@
     </div>
         <input type="submit" class="btn btn-primary" value="Login" name="">
     </form>
+
+    <?php
+     if(array_key_exists('buttonRegister', $_POST)) {
+         header("location: index.php"); //re-direct to register page
+     }
+     ?>
+
+     <form method="post">
+       <label for="buttonRegister">New User?</label>
+         <input type="submit" name="buttonRegister"
+                 class="button" value="Register" />
+     </form>
 
  </body>
  </html>

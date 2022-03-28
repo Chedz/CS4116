@@ -14,12 +14,12 @@
    session_start();
    if(!empty($_SESSION['loggedin'])){ header("location: home.php");}  //check if user already logged in
 
-   echo "_POST array";
-   pre_r($_POST);
-   echo "_GET array";
-   pre_r($_GET);
-   echo "_REQUEST array";
-   pre_r($_REQUEST);
+   // echo "_POST array";
+   // pre_r($_POST);
+   // echo "_GET array";
+   // pre_r($_GET);
+   // echo "_REQUEST array";
+   // pre_r($_REQUEST);
 
    if (isset($_POST['submit'])) { //the POST form has been submitted
      echo "First name:".$_POST['firstname'].'<br />';
@@ -29,6 +29,8 @@
    //$mysqli->close();
    closeConnection($mysqli);
     ?>
+
+    <h1> Registration </h1>
 
    <form action = "register.php" method="POST">
 
@@ -50,6 +52,17 @@
     </div>
     <input type="submit" class="btn btn-primary"/>
     </form>
+
+    <h4> Already a User? Login here </h4>
+    <form method="post">
+        <input type="submit" name="buttonSignIn"
+                class="button" value="Sign In" />
+    </form>
+    <?php
+     if(array_key_exists('buttonSignIn', $_POST)) {
+         header("location: login.php");
+     }
+     ?>
 
  </body>
  </html>
