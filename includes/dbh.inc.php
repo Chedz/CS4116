@@ -7,12 +7,12 @@
 // $dbname = "epiz_31242413_testDB";
 $servername = "sql100.epizy.com";
 $username = "epiz_31242413";
-$password = "WbIh2OaPZju";
+$dbpassword = "WbIh2OaPZju";
 $dbname = "epiz_31242413_project_database";
 
-function createConnection($servername, $username, $password, $dbname) {
+function createConnection($servername, $username, $dbpassword, $dbname) {
 
-  $connection = new mysqli($servername, $username, $password, $dbname);
+  $connection = new mysqli($servername, $username, $dbpassword, $dbname);
   //$connection = new mysqli("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_testDB");
 
   // Check connection
