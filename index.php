@@ -36,19 +36,19 @@
 
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" class="form-control" id="email" name="email"/>
+        <input type="text" class="form-control" id="email" name="email" required/>
     </div>
     <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password"/>
+        <input type="password" class="form-control" id="password" name="password" required/>
     </div>
     <div class="form-group">
         <label for="Firstname">First Name</label>
-        <input type="text" class="form-control" id="Firstname" name="Firstname"/>
+        <input type="text" class="form-control" id="Firstname" name="Firstname" required/>
     </div>
     <div class="form-group">
         <label for="Surname">Last Name</label>
-        <input type="text" class="form-control" id="Surname" name="Surname"/>
+        <input type="text" class="form-control" id="Surname" name="Surname" required/>
     </div>
     <input type="submit" class="btn btn-primary"/>
     </form>
