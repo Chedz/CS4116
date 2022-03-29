@@ -13,7 +13,10 @@
  </head>
  <body>
    <h1> Home Page! </h1>
-
+    <!--Temp button -->
+    <form action="profilePage.php">
+        <input type="submit" value="Profile" />
+    </form>
    <?php
     if(array_key_exists('buttonLogOut', $_POST)) {
         logUserOut();
