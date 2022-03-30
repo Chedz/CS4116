@@ -5,7 +5,14 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
- <title>Document</title>
+ <title>Register</title>
+
+  <style>
+    h1 {text-align: center;}
+    h4 {text-align: center;}
+    p {text-align: center;}
+    /* div {text-align: center;} */
+  </style>
 </head>
 <body>
  <?php
@@ -49,12 +56,34 @@
     }
 
  ?>
- <div class="container">
-   <div class="row" style="min-width:800">
-      <div class="col-sm-1"><img src="images/uniConnectLogo.png" alt="Logo" ></div>
-      <!-- <div class="col-sm-11 text-end text-uppercase">
-         <h1>Header1</H1><H3>This is Header3</h3></div> -->
-     </div>
+ <nav class="navbar navbar-dark bg-dark">
+   <div class="container">
+   <!-- <div class="navbar-header">
+     <a class="navbar-brand" href="#">WebSiteName</a>
+   </div> -->
+   <a href="index.php" class="navbar-left"><img src="images/uniConnectLogo.png"></a>
+   <ul class="nav navbar-nav">
+     <li class="active"><a href="index.php">Home</a></li>
+   </ul>
+   <ul class="nav navbar-nav">
+     <li><a href="#">About Us</a></li>
+   </ul>
+   <ul class="nav navbar-nav navbar-right">
+     <li><a href="index.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+     <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+   </ul>
+ </div>
+ </nav>
+ <div class="container-fluid">
+   <!-- <div class="row" style="min-width:800">
+      <div class="col-sm"><img src="images/uniConnectLogo.png" alt="Logo" ></div>
+      <div class="col-sm text-end">End Text</div>
+     </div> -->
+     <h1 style="padding: 2em 0em 1em 0em;">Welcome to Uni-Connect</h1>
+     <h4 style="padding: 2em 0em 1em 0em;">Interested in meeting other 3rd-level students?</h4>
+     <p style="margin-left: 2.5em;padding: 2em 0em 2em 0em;border-width: 2px;">Create your account by Registering using the form below</p>
+
+
    <form role="form" method="post" action = "register.php" method="POST">
      <div class="form-group row">
        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
@@ -92,11 +121,40 @@
    </form>
 
    <h4> Already a User? Login here </h4>
-<form method="post">
-    <input type="submit" name="buttonSignIn"
-            class="button" value="Sign In" />
-</form> -->
+    <form method="post">
+      <div class="row justify-content-center">
+        <input type="submit" name="buttonSignIn"
+                class="btn btn-primary" value="Sign In"/>
+      </div>
+    </form>
+   </div>
+   <br>
+
+ <div class="container-fluid">
+   <h4 style="padding: 4em 0em 1em 0em;">What is Uni-Connect?</h4>
+      <div class="row justify-content-center">
+        <p style="padding: 2em 0em 2em 0em;border-width: 2px;">
+          Uni-connect is a dating application tailored for third level students.
+        </p>
+       <p style="padding: 2em 0em 2em 0em;border-width: 2px;">
+          There are dating apps for a plethora of niches, as a university student,
+           you have specific needs and probably don't want to wade through all of the older people trying to get married.
+         </p>
+        <p style="padding: 1em 0em 2em 0em;border-width: 2px;">
+             You need dating apps that are specifically tailored for your lifestyle like Uni-Connect!
+        </p>
+      </div>
+   </div>
  </div>
+   <br>
+   <footer class="bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2022 Copyright:
+    <a class="text-dark" href="https://github.com/Chedz/CS4116">Group-14 Git Repo</a>
+  </div>
+  <!-- Copyright -->
+</footer>
  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
