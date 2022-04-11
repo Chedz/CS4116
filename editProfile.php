@@ -1,10 +1,44 @@
 <!DOCTYPE html>
  <html>
  <head>
+  <meta http-equiv = "refresh" content = "3; url = http://14-cs4116.infinityfreeapp.com/profilePage.php" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="images/uniConnectLogo.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
    <title>Profile change</title>
  </head>
  <body>
+   
+   <!-- Navbar-->
+     <nav class="navbar navbar-dark bg-dark">
+       <div class="container">
+       <!-- <div class="navbar-header">
+         <a class="navbar-brand" href="#">WebSiteName</a>
+       </div> -->
+       <a href="home.php" class="navbar-left"><img src="images/uniConnectLogo.png"></a>
+       <ul class="nav navbar-nav">
+         <li class="active"><a href="home.php">Home</a></li>
+       </ul>
+       <ul class="nav navbar-nav">
+         <li><a href="connections.php">Matches</a></li>
+       </ul>
+       <ul class="nav navbar-nav">
+         <li><a href="search.php">Search</a></li>
+       </ul>
+       <ul class="nav navbar-nav navbar-right">
+         <li><a href="profilePage.php"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+         <!-- <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+         <form method="post">
+             <input type="submit" name="buttonLogOut"
+                     class="btn btn-primary" value="Log out" />
+         </form>
+       </ul>
+     </div>
+     </nav>
 
+    <br>
    <?php
     require_once 'includes/dbh.inc.php';
     $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
@@ -109,6 +143,15 @@
         $conn->close();
     }
 ?>
-
+ <!--Footer-->
+    <br>
+     <footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright:
+      <a class="text-dark" href="https://github.com/Chedz/CS4116">Group-14 Git Repo</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
  </body>
  </html>
