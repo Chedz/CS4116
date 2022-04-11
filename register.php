@@ -2,6 +2,7 @@
  <html>
  <head>
    <title>User Registration</title>
+   <link rel="icon" href="images/uniConnectLogo.png" />
    <meta http-equiv = "refresh" content = "3; url = http://14-cs4116.infinityfreeapp.com/login.php" />
  </head>
  <body>
