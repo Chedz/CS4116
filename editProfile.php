@@ -37,6 +37,9 @@
     $gender = $_POST['gender'];
     $seeking = $_POST['seeking'];
     $description = $_POST['description'];
+    $InterestID = $_POST['interests'];
+    $InterestID2 = $_POST['interests2'];
+    $InterestID3 = $_POST['interests3'];
     
     //Upload file + path
     $targetDirectory = "userImages/";
@@ -78,6 +81,28 @@
                 $stmt->bind_param('iiisssssssssbss',$UserID, $age, $smoker, $drinker, $gender, $seeking, $university, $course, $location, $instagram, $snapchat, $occupation, $description, $userEmail, $targetFile);
                 $stmt->execute();
                 echo "Profile Updated";
+                $stmt->close();
+            }
+        }
+    }
+    if($conn->connect_error){
+        die('Connection failed : '.$conn->connect_error);
+    } else {
+        $sql = "SELECT * FROM Interests WHERE UserID = '$UserID'";
+        $results = mysqli_query($conn, $sql);
+        if($results){
+            if(mysqli_num_rows($results)>0){ //IF UserID exists in Interests table, update data in corresponding row
+                $stmt = $conn->prepare("UPDATE Interests SET InterestID='$InterestID', InterestID2 = '$InterestID2', InterestID3 = '$InterestID3' WHERE UserID='$UserID'");
+                $stmt->execute();
+                echo "Interests Updated";
+                
+                $stmt->close();
+            } else { //ELSE UserID doesnt exist, insert new row
+                $stmt = $conn->prepare("INSERT INTO Interests (UserID, InterestID, InterestID2, InterestID3)
+                    values(?,?,?,?)");
+                $stmt->bind_param('iiii',$UserID, $InterestID, $InterestID2, $InterestID3);
+                $stmt->execute();
+                echo "Interests Updated";
                 $stmt->close();
             }
         }
