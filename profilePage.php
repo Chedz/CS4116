@@ -98,6 +98,51 @@
                     <div class="form-group">
                         <input type="file" name="userImage" id="userImage" class="form-control"/>
                     </div>
+
+
+                    <!-- INTERESTS -->
+                    <div>
+                    <div class="form-group">
+                    <label>Interests</label>
+                        <select name="interests">
+                            <option value="" selected disabled hidden>Select</option>
+                            <option value="0">Reading</option>
+                            <option value="1">Working Out</option>
+                            <option value="2">Gaming</option>
+                            <option value="3">Walking</option>
+                            <option value="4">Cooking</option>
+                            <option value="5">Dancing</option>
+                            <option value="6">Netflix</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                    <label>Interests</label>
+                        <select name="interests2">
+                            <option value="" selected disabled hidden>Select</option>
+                            <option value="7">Fishing</option>
+                            <option value="8">Dogs</option>
+                            <option value="9">Cats</option>
+                            <option value="10">Music</option>
+                            <option value="11">Art</option>
+                            <option value="12">Coffee</option>
+                            <option value="13">Soccer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                    <label>Interests</label>
+                        <select name="interests3">
+                            <option value="" selected disabled hidden>Select</option>
+                            <option value="14">Movies</option>
+                            <option value="15">Travel</option>
+                            <option value="16">Beer</option>
+                            <option value="17">Wine</option>
+                            <option value="18">Politics</option>
+                            <option value="19">Baking</option>
+                            <option value="20">Photography</option>
+                        </select>
+                    </div>
+                    </div>
+
                     <div class="form-group">
                         <input type="submit" name="buttonSubmitProfile" class="button" value="Save Details"/>
                     </div>
@@ -167,6 +212,48 @@
                     <div class="form-group">
                         <input type="file" name="userImage" id="userImage" class="form-control"/>
                     </div>
+
+
+                    <!-- INTERESTS -->
+                    <div class="form-group">
+                    <label>Interests</label>
+                        <select name="interests">  
+                            <option value="" selected disabled hidden>Select</option>
+                            <option value="0">Reading</option>
+                            <option value="1">Working Out</option>
+                            <option value="2">Gaming</option>
+                            <option value="3">Walking</option>
+                            <option value="4">Cooking</option>
+                            <option value="5">Dancing</option>
+                            <option value="6">Netflix</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                    <label>Interests2</label>
+                        <select name="interests2">
+                            <option value="" selected disabled hidden>Select</option>
+                            <option value="7">Fishing</option>
+                            <option value="8">Dogs</option>
+                            <option value="9">Cats</option>
+                            <option value="10">Music</option>
+                            <option value="11">Art</option>
+                            <option value="12">Coffee</option>
+                            <option value="13">Soccer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                    <label>Interests3</label>
+                        <select name="interests3">
+                            <option value="" selected disabled hidden>Select</option>
+                            <option value="14">Movies</option>
+                            <option value="15">Travel</option>
+                            <option value="16">Beer</option>
+                            <option value="17">Wine</option>
+                            <option value="18">Politics</option>
+                            <option value="19">Baking</option>
+                            <option value="20">Photography</option>
+                        </select>
+                    </div>
                     <div class="form-group">
                         <input type="submit" name="buttonSubmitProfile" class="button" value="Save Details"/>
                     </div>
@@ -215,6 +302,52 @@
                     <!-- Description -->
                     <div style="width: 250px; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px; padding: 5px; margin-top: 5px;">
                     <?php echo $row['Description'] . "<br>";?>
+                    </div>
+                    
+                    <?php
+                                }
+                            }
+                        }
+                    ?>
+                    <?php
+                        $currUser = $_SESSION['username'];
+                        $sql = "SELECT UserID FROM user WHERE Handle = '$currUser'";
+                        $results = mysqli_query($conn,$sql);
+                        $row1 = mysqli_fetch_array($results);
+                        $tempUserID = $row1[0];
+
+                        $sql2 = "SELECT * FROM Interests WHERE UserID = '$tempUserID'";
+                        $results2 = mysqli_query($conn,$sql2);
+                        if($results2){
+                            if(mysqli_num_rows($results2)>0){ //IF user has profile, shows details
+                                while($row = mysqli_fetch_array($results2)){
+                                //print_r($row);
+                                $sql3 = "SELECT InterestName FROM AvailableInterests WHERE InterestID = '$row[1]'";
+                                    $results3 = mysqli_query($conn,$sql3);
+                                    $row3 = mysqli_fetch_array($results3);
+                                    $tempIntID = $row3[0];
+                                $sql4 = "SELECT InterestName FROM AvailableInterests WHERE InterestID = '$row[2]'";
+                                    $results4 = mysqli_query($conn,$sql4);
+                                    $row4 = mysqli_fetch_array($results4);
+                                    $tempIntID2 = $row4[0];
+                                $sql5 = "SELECT InterestName FROM AvailableInterests WHERE InterestID = '$row[3]'";
+                                    $results5 = mysqli_query($conn,$sql5);
+                                    $row5 = mysqli_fetch_array($results5);
+                                    $tempIntID3 = $row5[0];
+                        
+                            
+                    ?>
+                    <!-- Interested In -->
+                    <br>
+                    <h5>Interested In..</h5>
+                    <div style="width: 250px; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px; padding: 5px; margin-top: 20px;">
+                        <?php echo $tempIntID . "<br>";?>
+                    </div>
+                    <div style="width: 250px; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px; padding: 5px; margin-top: 20px;">
+                        <?php echo $tempIntID2 . "<br>";?>
+                    </div>
+                    <div style="width: 250px; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px; padding: 5px; margin-top: 20px;">
+                        <?php echo $tempIntID3 . "<br>";?>
                     </div>
                     <?php
                                 }
