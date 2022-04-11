@@ -18,7 +18,7 @@
         <li><a href="login.php">Log In</a></li>
     </ul>
     
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
         <div class="col" id="div1" style="border-radius: 25px; border: 2px solid purple;">
             <h5>Update User Profile</h5>
