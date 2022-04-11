@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Profile Page</title>
 </head>
@@ -10,13 +12,44 @@
         $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
         session_start();
         if(empty($_SESSION['loggedin'])){ header("location: login.php");} //if user not logged in, send to login
+        if(array_key_exists('buttonLogOut', $_POST)) {
+            logUserOut();
+        }
+        function logUserOut() {
+            //echo "This is Button1 that is selected";
+            $_SESSION = array();
+            session_destroy();
+            header("location: login.php");
+        }
     ?>
-    <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="index.php">Sign Up</a></li>
-        <li><a href="login.php">Log In</a></li>
-    </ul>
+    <!-- Navbar-->
+     <nav class="navbar navbar-dark bg-dark">
+       <div class="container">
+       <!-- <div class="navbar-header">
+         <a class="navbar-brand" href="#">WebSiteName</a>
+       </div> -->
+       <a href="home.php" class="navbar-left"><img src="images/uniConnectLogo.png"></a>
+       <ul class="nav navbar-nav">
+         <li class="active"><a href="home.php">Home</a></li>
+       </ul>
+       <ul class="nav navbar-nav">
+         <li><a href="connections.php">Matches</a></li>
+       </ul>
+       <ul class="nav navbar-nav">
+         <li><a href="search.php">Search</a></li>
+       </ul>
+       <ul class="nav navbar-nav navbar-right">
+         <li><a href="profilePage.php"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+         <!-- <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+         <form method="post">
+             <input type="submit" name="buttonLogOut"
+                     class="btn btn-primary" value="Log out" />
+         </form>
+       </ul>
+     </div>
+     </nav>
+
+    <br>
     
     <div class="container">
         <div class="row">
@@ -358,5 +391,15 @@
 
         </div>
         </div>
+    <!--Footer-->
+    <br>
+     <footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright:
+      <a class="text-dark" href="https://github.com/Chedz/CS4116">Group-14 Git Repo</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
 </body>
 </html>
