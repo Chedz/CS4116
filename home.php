@@ -64,6 +64,12 @@
 <!--User Feed Here-->
      <div class="container-fluid">
        <p>User Feed here</p>
+       <!-- Add feed functionality here, show user random or specific profiles that the user has not connected with -->
+       <?php
+          require_once 'profilePreview.php';
+          getProfilePreview('test@gmail.com');
+        ?>
+         <!-- Also need to add buttons so a user can swipe on profiles -->
      </div>
 
      <!-- <form action="profilePage.php">
