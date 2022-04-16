@@ -152,8 +152,15 @@
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2022 Copyright:
-    <a class="text-dark" href="https://github.com/Chedz/CS4116">Group-14 Git Repo</a>
+    <a style="padding: 0em 1em 0em 0em;border-width: 2px;" class="text-dark" href="https://github.com/Chedz/CS4116">Group-14 Git Repo</a>
+    Admin:
+    <a class="text-dark" href="http://14-cs4116.infinityfreeapp.com/adminLogin.php"> Login</a>
   </div>
+
+  <!-- <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    Admin:
+    <a class="text-dark" href="http://14-cs4116.infinityfreeapp.com/adminLogin.php"> Login</a>
+  </div> -->
   <!-- Copyright -->
 </footer>
  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
