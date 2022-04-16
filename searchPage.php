@@ -1,26 +1,50 @@
 <?php
+require_once 'includes/dbh.inc.php';
+    $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
+    session_start();
 
-define("DB_HOST", "sql100.epizy.com");
-define("DB_NAME", "epiz_31242413_project_database");
-define("DB_CHARSET", "utf8");
-define("DB_USER", "epiz_31242413");
-define("DB_PASSWORD", "WbIh2OaPZju");
-   
-  $pdo = new PDO(
-    "mysql:host=".DB_HOST.";charset=".DB_CHARSET.";dbname=".DB_NAME,
-    DB_USER, DB_PASSWORD, [
-      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]
-  );
-	//include_once 'includes/dbh.inc.php';
-    //$conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
+    $search = $_POST['search'];
+    $age = $_POST['age'];
+    $smoker = $_POST['smoker'];
+    $gender = $_POST['gender'];
+    $interests = $_POST['interestsSearch']; //Gets ID value of searched interest
 
-	$stmt=$pdo->prepare("SELECT * FROM user WHERE Firstname LIKE ? OR Surname LIKE ?");
-	$stmt->execute(["%".$_POST['search'] . "%" , "%".$_POST['search'] . "%"]);
+    if($conn->connect_error){
+        die('Connection failed : '.$conn->connect_error);
+    } else {
+        $sql = "SELECT * FROM user WHERE Firstname LIKE '%$search%' OR Surname LIKE '%$search%'";
+        $results = mysqli_query($conn,$sql);
+        
+        //Filters
+        if(isset($search)){ //Search bar + age set
+            $sqlFiltered = "SELECT * FROM profile WHERE (Firstname LIKE '%$search%' OR Surname LIKE '%$search%')";
+            if(isset($age)){
+                $sqlFiltered = $sqlFiltered .  " AND Age <= '$age'";
+                if(isset($smoker)){
+                    $sqlFiltered = $sqlFiltered . " AND Smoker = '$smoker'";
+                    if(isset($gender)){
+                        $sqlFiltered = $sqlFiltered . " AND Gender = '$gender'";
+                    } 
+                } else if(isset($gender)){
+                    $sqlFiltered = $sqlFiltered . " AND Gender = '$gender'";
+                }  
+            }
+            if(isset($interests)){ //Interests has been searched, do this
+                $sqlInterests = "SELECT UserID FROM Interests WHERE InterestID = '$interests' OR InterestID2 = '$interests' OR InterestID3 = '$interests'";
+                $resultsInterests = mysqli_query($conn,$sqlInterests); //This holds an object the UserIDs of whoever has this interest
+                $tempFilterInterestsArray = array();
+                foreach($resultsInterests as $tempRow1){
+                    $tempFilterInterestsArray[] = $tempRow1['UserID'];
+                } //Here we place the UserIDs of the interests search into an array for later
 
-	$results = $stmt->fetchAll();		
-			 
-
-
+            }   
+        }
+        $tempFilterIDArray = array();
+        $resultsFiltered = mysqli_query($conn,$sqlFiltered);
+        foreach($resultsFiltered as $tempRow){
+            $tempFilterIDArray[] = $tempRow['UserID'];
+        } //Here we place the UserIDs of the filter search into an array for later 
+    }
+    
+    
 ?>
