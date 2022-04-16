@@ -54,6 +54,8 @@
     //echo $currUserID;
     $userEmail = $_SESSION['username'];
     //Profile Update Variables
+    $firstName = $_POST['Firstname'];
+    $surname = $_POST['Surname'];
     $age = $_POST['age'];
     $snapchat = $_POST['snapchat'];
     $instagram = $_POST['instagram'];
@@ -104,15 +106,15 @@
         $results = mysqli_query($conn, $sql);
         if($results){
             if(mysqli_num_rows($results)>0){ //IF UserID exists in profile table, update data in corresponding row
-                $stmt = $conn->prepare("UPDATE profile SET Age='$age', Smoker='$smoker', Drinker='$drinker', Gender='$gender', Seeking='$seeking', Institution='$university', Course='$course', Location='$location', Instagram='$instagram',                   Snapchat='$snapchat', Occupation='$occupation', Description='$description', email='$userEmail', Photo='$targetFile' WHERE UserID='$UserID'");
+                $stmt = $conn->prepare("UPDATE profile SET Firstname = '$firstName', Surname = '$surname', Age='$age', Smoker='$smoker', Drinker='$drinker', Gender='$gender', Seeking='$seeking', Institution='$university', Course='$course', Location='$location', Instagram='$instagram',                   Snapchat='$snapchat', Occupation='$occupation', Description='$description', email='$userEmail', Photo='$targetFile' WHERE UserID='$UserID'");
                 $stmt->execute();
                 echo "Profile Updated";
                 
                 $stmt->close();
             } else { //ELSE username doesnt exist, insert new row
-                $stmt = $conn->prepare("INSERT INTO profile (UserID, Age, Smoker, Drinker, Gender, Seeking, Institution, Course, Location, Instagram, Snapchat, Occupation, Description, email, Photo)
-                    values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                $stmt->bind_param('iiisssssssssbss',$UserID, $age, $smoker, $drinker, $gender, $seeking, $university, $course, $location, $instagram, $snapchat, $occupation, $description, $userEmail, $targetFile);
+                $stmt = $conn->prepare("INSERT INTO profile (UserID, Firstname, Surname, Age, Smoker, Drinker, Gender, Seeking, Institution, Course, Location, Instagram, Snapchat, Occupation, Description, email, Photo)
+                    values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                $stmt->bind_param('issiisssssssssbss',$UserID, $firstName, $surname, $age, $smoker, $drinker, $gender, $seeking, $university, $course, $location, $instagram, $snapchat, $occupation, $description, $userEmail, $targetFile);
                 $stmt->execute();
                 echo "Profile Updated";
                 $stmt->close();
