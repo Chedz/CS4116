@@ -15,15 +15,6 @@
       header("location: login.php");
   }
 
-	// if (isset($_POST["search"])) {
-	//   require "searchPage.php";
-	//
-	//
-	//   if (count($results) > 0) {
-	//       foreach ($results as $r) {
-	//         printf("<div>%s - %s</div>", $r["Firstname"], $r["Surname"]);
-	//   }} else { echo "No results found"; }
-	// }
  ?>
 
  <!DOCTYPE html>
@@ -75,21 +66,85 @@
 <!--Search Feed Here-->
      <div class="container-fluid">
 			 <h1>Search</h1>
-			 				<form action="search.php" method="POST">
-			 					<input type="text" name="search" placeholder="Search for members..."/>
-			 					<button type="submit" name="Search">Search</button>
-
-			 				</form>
-							<?php 	if (isset($_POST["search"])) {
-								  require "searchPage.php";
-
-
-								  if (count($results) > 0) {
-								      foreach ($results as $r) {
-								        printf("<div>%s - %s</div>", $r["Firstname"], $r["Surname"]);
-								  }} else { echo "No results found"; }
-								}
-							  ?>
+			 <form action="search.php" method="POST">
+			 	<input type="text" name="search" placeholder="Search for members..."/>
+			 	<button type="submit" name="Search">Search</button><br>
+                                <input type="number" name="age" min="18" placeholder="Max age.." value="22" required/>
+                                <label for="age">Max Age (18+)</label><br>
+                                <label>Smoker?</label><br>
+                                <input type="radio" name="smoker" value="0"/>
+                                <label for="smoker">No</label>
+                                <input type="radio" name="smoker" value="1"/>
+                                <label for="smoker">Yes</label><br>
+                                <label>Gender..</label><br>
+                                <input type="radio" name="gender" value="Male"/>
+                                <label for="gender">Male</label>
+                                <input type="radio" name="gender" value="Female"/>
+                                <label for="gender">Female</label>
+                                <select name="interestsSearch">
+                                    <option value="" selected disabled hidden>Select Interest</option>
+                                    <option value="0">Reading</option>
+                                    <option value="1">Working Out</option>
+                                    <option value="2">Gaming</option>
+                                    <option value="3">Walking</option>
+                                    <option value="4">Cooking</option>
+                                    <option value="5">Dancing</option>
+                                    <option value="6">Netflix</option>
+				    <option value="7">Fishing</option>
+                                    <option value="8">Dogs</option>
+                                    <option value="9">Cats</option>
+                                    <option value="10">Music</option>
+                                    <option value="11">Art</option>
+                                    <option value="12">Coffee</option>
+                                    <option value="13">Soccer</option>
+				    <option value="14">Movies</option>
+                                    <option value="15">Travel</option>
+                                    <option value="16">Beer</option>
+                                    <option value="17">Wine</option>
+                                    <option value="18">Politics</option>
+                                    <option value="19">Baking</option>
+                                    <option value="20">Photography</option>
+                                </select>
+                                <hr>
+			</form>
+	     
+			<?php 	if (isset($_POST["search"])) {
+				require "searchPage.php";
+				require_once 'profilePreview.php';
+					
+				//This displays the profile tile for each result based on name
+                                    if (count($resultsFiltered) > 0) {
+								        
+                                        if(isset($interests)){ //If interest has been selected for search, do this modified search with filters and interests
+                                            $finalSearchIDs = array_intersect($tempFilterIDArray,$tempFilterInterestsArray); //Find UserIDs that have the searched interest and match the search filters by comparing the two arrays from                                                                                                                                       earlier
+                                            foreach($finalSearchIDs as $r){ //Here we iterate through each matching UserID and display the results
+                                                $tempUserID = $r;
+                                                $sql2 = "SELECT * FROM profile WHERE UserID = '$tempUserID'";
+                                                $results2 = mysqli_query($conn,$sql2);
+                                                $row2 = mysqli_fetch_array($results2);
+                                                    $tempMail = $row2['email'];       
+                                                    getProfilePreview($tempMail);
+                                                    printf("<br>");
+                                            }
+                                        } else { //If interest has not been selected, do the standard search with filters
+                                            foreach($resultsFiltered as $r) {
+                                                $tempUserID = $r['UserID'];
+                                                $sql2 = "SELECT * FROM profile WHERE UserID = '$tempUserID'";
+                                                $results2 = mysqli_query($conn,$sql2);
+                                                $row2 = mysqli_fetch_array($results2);
+                                                    $tempMail = $row2['email'];       
+                                                    getProfilePreview($tempMail);
+                                                    printf("<br>");
+					    }
+                                        }
+                                        
+                                    } else { 
+                                        echo "No results found";
+                                    }
+				 }
+					
+				}
+			?>
      </div>
 
      <!-- <form action="profilePage.php">
