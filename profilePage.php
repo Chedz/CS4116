@@ -74,6 +74,12 @@
                         <input type="text" class="form-control" id="email" name="email" placeholder="email" value="<?php echo $_SESSION['username'];?>" readonly="true" style="color:#808080"/>
                     </div>
                     <div class="form-group">
+                        <input type="text" class="form-control" id="Firstname" name="Firstname" placeholder="First Name" value="<?php echo $row['Firstname'];?>"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="Surname" name="Surname" placeholder="Surname" value="<?php echo $row['Surname'];?>"/>
+                    </div>
+                    <div class="form-group">
                         <input type="text" class="form-control" id="age" name="age" placeholder="Age" value="<?php echo $row['Age'];?>"/>
                     </div>
                     <div class="form-group">
@@ -186,6 +192,12 @@
                         ?>
                         <div class="form-group">
                         <input type="text" class="form-control" id="email" name="email" placeholder="email" value="<?php echo $_SESSION['username'];?>" readonly="true" style="color:#808080"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="Firstname" name="Firstname" placeholder="First Name" value="<?php echo $row['Firstname'];?>"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="Surname" name="Surname" placeholder="Surname" value="<?php echo $row['Surname'];?>"/>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="age" name="age" placeholder="Age" value="<?php echo $row['Age'];?>"/>
