@@ -32,7 +32,7 @@ CREATE TABLE `Connections` (
   `userID1` int(11) NOT NULL COMMENT 'Which user initiated the connection?',
   `userID2` int(11) NOT NULL COMMENT 'Which user received the connection',
   `ConnectionDate` date NOT NULL COMMENT 'When was the connection made?',
-  `isAccepted` Boolean default false COMMENT 'Is the connection accepted?'
+  `isAccepted` binary(1) NOT NULL COMMENT 'Has the connection been accepted?'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
