@@ -64,6 +64,16 @@
     <div class="container-fluid">
       <p>Connections here</p>
     </div>
+    <?php
+     require_once 'includes/dbh.inc.php';
+     require_once 'profilePreview.php';
+     $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
+        
+     
+
+
+    ?>
+
 
     <!-- <form action="profilePage.php">
         <input type="submit" value="Profile" />
