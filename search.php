@@ -107,14 +107,14 @@
                                 </select>
                                 <hr>
 			</form>
-	     
+
 			<?php 	if (isset($_POST["search"])) {
 				require "searchPage.php";
 				require_once 'profilePreview.php';
-					
+
 				//This displays the profile tile for each result based on name
                                     if (count($resultsFiltered) > 0) {
-								        
+
                                         if(isset($interests)){ //If interest has been selected for search, do this modified search with filters and interests
                                             $finalSearchIDs = array_intersect($tempFilterIDArray,$tempFilterInterestsArray); //Find UserIDs that have the searched interest and match the search filters by comparing the two arrays from                                                                                                                                       earlier
                                             foreach($finalSearchIDs as $r){ //Here we iterate through each matching UserID and display the results
@@ -122,7 +122,7 @@
                                                 $sql2 = "SELECT * FROM profile WHERE UserID = '$tempUserID'";
                                                 $results2 = mysqli_query($conn,$sql2);
                                                 $row2 = mysqli_fetch_array($results2);
-                                                    $tempMail = $row2['email'];       
+                                                    $tempMail = $row2['email'];
                                                     getProfilePreview($tempMail);
                                                     printf("<br>");
                                             }
@@ -132,17 +132,17 @@
                                                 $sql2 = "SELECT * FROM profile WHERE UserID = '$tempUserID'";
                                                 $results2 = mysqli_query($conn,$sql2);
                                                 $row2 = mysqli_fetch_array($results2);
-                                                    $tempMail = $row2['email'];       
+                                                    $tempMail = $row2['email'];
                                                     getProfilePreview($tempMail);
                                                     printf("<br>");
 					    }
                                         }
-                                        
-                                    } else { 
+
+                                    } else {
                                         echo "No results found";
                                     }
-				 }
-					
+				 //}
+
 				}
 			?>
      </div>
