@@ -11,12 +11,16 @@
       session_destroy();
       header("location: adminLogin.php");
   }
+
+  function editProfile() {
+    header('location: adminProfileEdit.php');
+  }
  ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Auth</title>
+    <title>Admin Panel</title>
     <link rel="icon" href="images/uniConnectLogo.png" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- <meta http-equiv = "refresh" content = "3; url = http://14-cs4116.infinityfreeapp.com/profilePage.php" /> -->
@@ -150,6 +154,28 @@
                                                               $row2 = mysqli_fetch_array($results2);
                                                                   $tempMail = $row2['email'];
                                                                   getProfilePreview($tempMail);
+                                                                  // printf('<form action="search.php" method="POST">')
+                                                                  // </form>
+
+                                                                  // printf('<form method="post">');
+                                                                  // printf('<input type="submit" name="buttonEdit')
+                                                                  // printf($tempUserID);
+                                                                  // printf('" class="btn btn-primary" value="Edit Profile" />');
+                                                                  // printf('</form>');
+
+                                                                  // <form action="" method="post">
+                                                                  //     <input type="hidden" name="action" value="submit" />
+                                                                  //     <select name="name">
+                                                                  //         <option>John</option>
+                                                                  //         <option>Henry</option>
+                                                                  //     <select>
+                                                                  // <!--
+                                                                  // make sure all html elements that have an ID are unique and name the buttons submit
+                                                                  // -->
+                                                                  //     <input id="tea-submit" type="submit" name="submit" value="Tea">
+                                                                  //     <input id="coffee-submit" type="submit" name="submit" value="Coffee">
+                                                                  // </form>
+
                                                                   printf("<br>");
               					    }
                                                       }

@@ -14,6 +14,82 @@
       session_destroy();
       header("location: login.php");
   }
+
+  if(array_key_exists('buttonSwipeRight', $_POST)) {
+      swipeRight();
+  }
+
+  function swipeRight(){
+    // $_POST['connectProfile'] = $currentFeedProfile;
+    //$_SESSION['username'] = $currentProfile1;
+    //check for existing entry in connection table
+    require_once 'includes/dbh.inc.php';
+    $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
+
+    if($conn->connect_error){
+        die('Connection failed : '.$conn->connect_error);
+    } else {
+
+    $tempUserID = $_SESSION['username'];
+                $sql1 = "SELECT UserID FROM user WHERE Handle = '$tempUserID'";
+                $results1 = mysqli_query($conn,$sql1);
+                $row1 = mysqli_fetch_array($results1);
+                $User1ID = $row1['UserID']; //initiated connection
+                //echo $User1ID;
+
+                //$currentFeedProfile = $_POST['connectProfile'];
+                $currentFeedProfile = $_SESSION['currentFeedProfile'];
+                $sql1 = "SELECT UserID FROM user WHERE Handle = '$currentFeedProfile'";
+                $results1 = mysqli_query($conn,$sql1);
+                $row1 = mysqli_fetch_array($results1);
+                $User2ID = $row1['UserID']; //received connection
+                //echo $User2ID;
+
+
+                $sql = "SELECT * FROM Connections WHERE userID1  = '$User2ID' AND userID2  = '$User1ID'"; //check if user2 has already attempted to connect with user1 previously
+                $results = mysqli_query($conn, $sql);
+                // echo "connecting to db";
+                if($results){ //alter incomplete connection to be complete
+                  // echo "found results";
+                  if(mysqli_num_rows($results)>0){ //IF UserID exists in profile table, update data in corresponding row
+                    echo "found already existing connection". "<br>";
+                    //INSERT INTO Connections (ConnectionID, userID1, userID2, ConnectionDate, isAccepted)
+
+                      //$stmt = $conn->prepare("");
+                      $date = date("Y-m-d");
+                      $sql = "UPDATE Connections SET ConnectionDate='$date', isAccepted=1 WHERE userID1='$User2ID' AND userID2  = '$User1ID'";
+
+                      if (mysqli_query($conn, $sql)) {
+                        echo "Connection Updated";
+                      } else {
+                        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                      }
+                      // $stmt->execute();
+                      // echo "Connection Updated";
+                      // $stmt->close();
+
+                  } else { //ELSE no previous connection attempt, insert new row
+                    echo "inserting new connection". "<br>";
+                      // $stmt = $conn->prepare("INSERT INTO Connections (userID1, userID2, isAccepted) values(?,?,?)");
+                      // $stmt->bind_param('iii', $User1ID, $User2ID, 0);
+                      // $stmt->execute();
+                      // echo "Connections Updated";
+                      // $stmt->close();
+
+                      $sql = "INSERT INTO Connections (userID1, userID2, isAccepted) VALUES (".$User1ID.",".$User2ID.",0)";
+
+                        if (mysqli_query($conn, $sql)) {
+                          echo "New Connection Added";
+                        } else {
+                          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                        }
+                  }
+
+                }
+                $conn->close();
+              }
+  }
+
  ?>
 
  <!DOCTYPE html>
@@ -67,7 +143,11 @@
        <!-- Add feed functionality here, show user random or specific profiles that the user has not connected with -->
        <?php
           require_once 'profilePreview.php';
-          getProfilePreview('test@gmail.com');
+          $currentFeedProfile = 'elfbar@email.com';
+          //$_POST['connectProfile'] = $currentFeedProfile;
+          $_SESSION['currentFeedProfile'] = $currentFeedProfile;
+          getProfilePreview($currentFeedProfile);
+          getSwipeBar($currentFeedProfile);
         ?>
          <!-- Also need to add buttons so a user can swipe on profiles -->
      </div>

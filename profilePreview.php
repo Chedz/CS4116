@@ -29,6 +29,19 @@
       // $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
       session_start();
       if(empty($_SESSION['loggedin'])){ header("location: login.php");} //if user not logged in, send to login
+
+
+      // if(array_key_exists('buttonSwipeLeft', $_POST)) {
+      //     logUserOut();
+      // }
+      //
+      // function logUserOut() {
+      //     //echo "This is Button1 that is selected";
+      //     $_SESSION = array();
+      //     session_destroy();
+      //     header("location: login.php");
+      // }
+
       // if(array_key_exists('buttonLogOut', $_POST)) {
       //     logUserOut();
       // }
@@ -135,6 +148,39 @@
       }
 
       // getProfilePreview('test@gmail.com');
+
+      function getSwipeBar($userEmail){
+        ?>
+        <!-- <form action="editProfile.php" method="POST" enctype="multipart/form-data">
+          <div class="container pt-3">
+            <div class="row justify-content-center"> -->
+             <!-- Swipe Left -->
+              <!-- <div style="height: 8rem; width: 8rem; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px; padding: 5px; margin-top: 5px;">
+                <button type="button" class="btn btn-outline-danger" type="submit" name="buttonSwipeLeft">Dislike</button>
+              </div> -->
+               <!-- Swipe Right -->
+              <!-- <div style="height: 8rem; width: 8rem; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px; padding: 5px; margin-top: 5px;">
+                <button type="button" class="btn btn-outline-success" type="submit" name="buttonSwipeRight">Like</button>
+              </div>
+            </div>
+          </div>
+        </form> -->
+        <div class="container pt-3">
+          <div class="row justify-content-center">
+            <form method="post">
+                <input type="submit" name="buttonSwipeLeft"
+                        class="btn btn-primary" value="Swipe Left" />
+            </form>
+
+            <form method="post">
+                <input type="submit" name="buttonSwipeRight"
+                        class="btn btn-primary" value="Swipe Right" />
+            </form>
+          </div>
+
+        </div>
+        <?php
+      }
   ?>
 
 
