@@ -3,7 +3,7 @@
  <head>
    <title>User Registration</title>
    <link rel="icon" href="images/uniConnectLogo.png" />
-   <meta http-equiv = "refresh" content = "3; url = http://14-cs4116.infinityfreeapp.com/login.php" />
+   
  </head>
  <body>
 
@@ -16,11 +16,12 @@
     $password = $_POST['password'];
     $firstname = $_POST['firstname'];
     $surname = $_POST['surname'];
+    $cpassword = $_POST['cpassword'];
 
-    echo $email;
+    /*echo $email;
     echo $password;
     echo $firstname;
-    echo $surname;
+    echo $surname;*/
 
     require_once 'includes/dbh.inc.php';
     $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
@@ -44,13 +45,29 @@
           // code...
           echo "surname is empty";
         }
+        if($_POST['password'] != $_POST['cpassword'])
+        {   
+            
+            
+            echo '<div class="alert alert-danger alert-dismissisble fade show" role="alert"><strong>Uh Oh! </strong>Passwords Do Not Match
+                  <a href="/index.php"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    
+                    </button></a>
+                    </div>';
+
+
+            
+        }
+        else{
         $stmt = $conn->prepare("insert into user(handle, Password, Firstname, Surname)
         values(?,?,?,?)");
         $stmt->bind_param("ssss",$email, $password, $firstname, $surname);
         $stmt->execute();
+        header("Refresh:3; url=login.php");
         echo "User registered, redirecting to login";
         $stmt->close();
         $conn->close();
+    }
     }
 ?>
 
