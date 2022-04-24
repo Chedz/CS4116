@@ -66,12 +66,34 @@
     </div>
     <?php
      require_once 'includes/dbh.inc.php';
-     require_once 'profilePreview.php';
      $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
-        
-     
+     require_once 'profilePreview.php';
 
+     $tempUserID = $_SESSION['username'];
+                $sql1 = "SELECT UserID FROM user WHERE Handle = '$tempUserID'";
+                $results1 = mysqli_query($conn,$sql1);
+                $row1 = mysqli_fetch_array($results1);
+                $User1ID = $row1['UserID']; //initiated connection
+                //echo $User1ID;
 
+     //Get all the users that have accepted the connection with the user
+     $sql = "SELECT user2ID FROM Connections WHERE userID1  = '$User1ID' AND isAccepted = 1 ";
+     $results = mysqli_query($conn, $sql);
+     $isAcceptedArray = array(); 
+     foreach($results as $temprow){
+       $isAcceptedArray[] = $temprow['user2ID'];
+     }
+
+     foreach($isAcceptedArray as $r) {
+       $tempUserID = $r['user2ID']; 
+       $sql2 = "SELECT * FROM profile WHERE UserID = '$tempUserID'";
+       $results2 = mysqli_query($conn,$sql2);
+       $row2 = mysqli_fetch_array($results2);#
+       $tempMail = $row2['email'];
+       getProfilePreview($tempMail);
+       printf("<br>");			    
+     }
+    
     ?>
 
 

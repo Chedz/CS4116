@@ -1,5 +1,5 @@
 <?php     
-  /* require_once 'includes/dbh.inc.php';
+   require_once 'includes/dbh.inc.php';
    $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
 
    //get userid of current user
@@ -19,6 +19,6 @@
           values(?,?,?,?,?)"); 
   $sql->bind_param('iiibb', $UserID, )
   $sql->execute();
-  $sql->close();  */ 
+  $sql->close();
 
 ?>
