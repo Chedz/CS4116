@@ -68,31 +68,52 @@
      require_once 'includes/dbh.inc.php';
      $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
      require_once 'profilePreview.php';
+     //Function to get the social media accounts (Instagram and Snapchat) of a user given an userID
+     function getsocials($userID){ 
+      $sqlSocial = "SELECT * FROM profile WHERE UserID = '$userID'";
+      $socialResults = mysqli_query($conn, $sqlSocial); 
+      $socialRow = mysqli_fetch_array($socialResults);
+      //Prints out Instagram and Snapchat of user put into function
+      echo "<br>" . $socialRow['Instagram'] . "<br>" . $socialRow['Snapchat']; 
+     }
 
      $tempUserID = $_SESSION['username'];
                 $sql1 = "SELECT UserID FROM user WHERE Handle = '$tempUserID'";
                 $results1 = mysqli_query($conn,$sql1);
                 $row1 = mysqli_fetch_array($results1);
-                $User1ID = $row1['UserID']; //initiated connection
+                $currUserID = $row1['UserID']; //initiated connection
                 //echo $User1ID;
 
-     //Get all the users that have accepted the connection with the user
-     $sql = "SELECT user2ID FROM Connections WHERE userID1  = '$User1ID' AND isAccepted = 1 ";
-     $results = mysqli_query($conn, $sql);
-     $isAcceptedArray = array(); 
-     foreach($results as $temprow){
-       $isAcceptedArray[] = $temprow['user2ID'];
+     //Get all the Connections made by the user that have been accepted 
+     $sqlconnections = "SELECT * FROM Connections WHERE (user1ID  = '$currUserID' OR user2ID = '$currUserID) AND isAccepted = 1 ";
+     $results = mysqli_query($conn, $sqlconnections);
+     if (mysqli_num_rows($results) == 0){
+       // The query returned 0 rows!
+       echo 'no Matches'; 
+     } else {
+      $isAcceptedArray = array(); 
+      foreach($results as $temprow){
+      //$isAcceptedArray[] = $temprow['user2ID'];
+        if ($currUserID = $temprow['user1ID']){
+          $isAcceptedArray[] = $temprow['user1ID']; 
+        } else {
+          $isAcceptedArray[] = $temprow['user2ID']; 
+        }
+      }
+      //Present profile preview of the users that have made connections with the current user
+      foreach($isAcceptedArray as $id) {
+        $otherUserID = $id; 
+        $sql2 = "SELECT * FROM profile WHERE UserID = '$otherUserID'";
+        $results2 = mysqli_query($conn,$sql2);
+        $row2 = mysqli_fetch_array($results2);
+        $tempMail = $row2['email'];
+        getProfilePreview($tempMail);
+        printf("<br>");	
+        getsocials($otherUserID); 
+        printf("<br>"); 		    
+      }
      }
-
-     foreach($isAcceptedArray as $r) {
-       $tempUserID = $r['user2ID']; 
-       $sql2 = "SELECT * FROM profile WHERE UserID = '$tempUserID'";
-       $results2 = mysqli_query($conn,$sql2);
-       $row2 = mysqli_fetch_array($results2);#
-       $tempMail = $row2['email'];
-       getProfilePreview($tempMail);
-       printf("<br>");			    
-     }
+     
     
     ?>
 
