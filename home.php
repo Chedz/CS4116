@@ -214,23 +214,66 @@
                 foreach($results4 as $userInterestResults){
                     //Reduce results based on age
                     $userDisplay1 = $userInterestResults['UserID'];
-                    $sql51 = "SELECT UserID FROM profile WHERE Age <= ('$currUserAge'+3) AND Age >= ('$currUserAge'-3) AND UserID = '$userDisplay1'";
-                    $sql51Result = mysqli_query($conn,$sql51);
-                    //Iterate through results
-                    foreach($sql51Result as $finalUserIDTemp){
+                    // print_r($userInterestResults);
+                    // $sql51 = "SELECT UserID FROM profile WHERE Age <= ('$currUserAge'+3) AND Age >= ('$currUserAge'-3) AND UserID = '$userDisplay1'";
+                    // $sql51Result = mysqli_query($conn,$sql51);
+                    // //Iterate through results
+                    // foreach($finalResult as $userIDTemp){
+
                       //Check if existing connection
-                      //
-                      // $sql = "SELECT * FROM Connections WHERE userID1  = $_SESSION['userID'] AND userID2  = '$finalUserIDTemp'"; //check if user2 has already attempted to connect with user1 previously
-                      // $results = mysqli_query($conn, $sql);
-                        //Display users who match interest and age requirement
-                        $finalUserID = $finalUserIDTemp['UserID'];
-                        $sql5 = "SELECT Handle FROM user WHERE UserID = '$finalUserID'";
-                        $results5 = mysqli_query($conn,$sql5);
-                        $handle = mysqli_fetch_array($results5);
-                        $handleFinal = $handle['Handle'];
-                        getProfilePreview($handleFinal);
-                        getSwipeBar($handleFinal);
-                    }
+                       //print_r($userInterestResults);
+
+                      $currUserID = $_SESSION['userID'];
+                      $sql6 = "SELECT * FROM Connections WHERE userID1 = '$currUserID' AND userID2 = '$userDisplay1'"; //check if user2 has already attempted to connect with user1 previously
+                      $checkMatch = mysqli_query($conn, $sql6); //do not add ids from this query to home page as they have existing connection
+
+                        //foreach ($finalResult as $finalUserIDTemp) {
+
+                           //print_r($finalUserIDTemp);
+                          // foreach ($sql51Result as $moreUserIdTemp) {
+                          //
+                          // }
+                          if(mysqli_num_rows($checkMatch)>0){
+
+
+                          foreach ($checkMatch as $previousMatch) {
+                            if ($finalUserIDTemp == $previousMatch) {
+                                //already existing connection sent, do nothing
+                            }else {
+                              //Display users who match interest and age requirement
+                              //$finalUserID = $finalUserIDTemp['UserID'];
+                              $sql5 = "SELECT Handle FROM user WHERE UserID = '$userDisplay1'";
+                              $results5 = mysqli_query($conn,$sql5);
+                              $handle = mysqli_fetch_array($results5);
+                              $handleFinal = $handle['Handle'];
+                              getProfilePreview($handleFinal);
+                              getSwipeBar($handleFinal);
+                            }
+                          }
+                        }else {
+                          //$finalUserID = $finalUserIDTemp['UserID'];
+                          $sql5 = "SELECT Handle FROM user WHERE UserID = '$userDisplay1'";
+                          $results5 = mysqli_query($conn,$sql5);
+                          $handle = mysqli_fetch_array($results5);
+                          $handleFinal = $handle['Handle'];
+                          getProfilePreview($handleFinal);
+                          getSwipeBar($handleFinal);
+                        }
+
+
+                        //}
+                        // //Display users who match interest and age requirement
+                        // $finalUserID = $finalUserIDTemp['UserID'];
+                        // $sql5 = "SELECT Handle FROM user WHERE UserID = '$finalUserID'";
+                        // $results5 = mysqli_query($conn,$sql5);
+                        // $handle = mysqli_fetch_array($results5);
+                        // $handleFinal = $handle['Handle'];
+                        // getProfilePreview($handleFinal);
+                        // getSwipeBar($handleFinal);
+
+                        //}
+
+                    //}
                 }
 
                 ?>
