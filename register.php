@@ -32,42 +32,38 @@
         if (empty($email)) {
           // code...
           echo "email is empty";
-        }
-        if (empty($password)) {
+        } else if (empty($password)) {
           // code...
           echo "password is empty";
-        }
-        if (empty($firstname)) {
+        } else if (empty($firstname)) {
           // code...
           echo "firstname is empty";
-        }
-        if (empty($surname)) {
+        } else if (empty($surname)) {
           // code...
           echo "surname is empty";
-        }
-        if($_POST['password'] != $_POST['cpassword'])
-        {   
-            
-            
-            echo '<div class="alert alert-danger alert-dismissisble fade show" role="alert"><strong>Uh Oh! </strong>Passwords Do Not Match
+        } else if(empty($_POST['password']) || (preg_match("/^.*(?=.{8,32})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $_POST['password']) === 0)) {
+            $errPass = '<p class="errText">Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit</p>';
+            echo '<div class="alert alert-danger alert-dismissisble fade show" role="alert"><strong>Uh Oh! </strong>Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit
                   <a href="/index.php"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     
                     </button></a>
-                    </div>';
-
-
-            
+                    </div>'; 
+        } else if($_POST['password'] != $_POST['cpassword']){      
+            echo '<div class="alert alert-danger alert-dismissisble fade show" role="alert"><strong>Uh Oh! </strong>Passwords Do Not Match
+                  <a href="/index.php"><button type="button" class="close" data-dismiss="alert" aria-label="Close" style="color:#FFFF00; font-size:20px; border:none">
+                    Try Again
+                    </button></a>
+                    </div>';   
+        } else {
+            $stmt = $conn->prepare("insert into user(handle, Password, Firstname, Surname)
+            values(?,?,?,?)");
+            $stmt->bind_param("ssss",$email, $password, $firstname, $surname);
+            $stmt->execute();
+            header("Refresh:3; url=login.php");
+            echo "User registered, redirecting to login";
+            $stmt->close();
+            $conn->close();
         }
-        else{
-        $stmt = $conn->prepare("insert into user(handle, Password, Firstname, Surname)
-        values(?,?,?,?)");
-        $stmt->bind_param("ssss",$email, $password, $firstname, $surname);
-        $stmt->execute();
-        header("Refresh:3; url=login.php");
-        echo "User registered, redirecting to login";
-        $stmt->close();
-        $conn->close();
-    }
     }
 ?>
 
