@@ -23,32 +23,41 @@
             header("location: login.php");
         }
     ?>
-    <!-- Navbar-->
-     <nav class="navbar navbar-dark bg-dark">
-       <div class="container">
-       <!-- <div class="navbar-header">
-         <a class="navbar-brand" href="#">WebSiteName</a>
-       </div> -->
-       <a href="home.php" class="navbar-left"><img src="images/uniConnectLogo.png"></a>
-       <ul class="nav navbar-nav">
-         <li class="active"><a href="home.php">Home</a></li>
-       </ul>
-       <ul class="nav navbar-nav">
-         <li><a href="connections.php">Matches</a></li>
-       </ul>
-       <ul class="nav navbar-nav">
-         <li><a href="search.php">Search</a></li>
-       </ul>
-       <ul class="nav navbar-nav navbar-right">
-         <li><a href="profilePage.php"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-         <!-- <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
-         <form method="post">
+   <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+   <div class="container-fluid">
+   <a class= "navbar-brand" href="index.php"><img src="images/uniConnectLogo.png"></a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse"
+   data-target="#navbarResponsive"> 
+        <span class="navbar=toggler-icon"></span>
+    </button>    
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">   
+                <a class="nav-link" href="index.php">Home</a>
+            </li>
+
+            <li class="nav-item">   
+                <a class="nav-link" href="profilePage.php"><span class="glyphicon glyphicon-user"></span> Profile</a>
+            </li>
+
+            <li class="nav-item">   
+                <a class="nav-link" href="search.php"><span class="glyphicon glyphicon-user"></span> Search</a>
+            </li>
+
+            <li class="nav-item">   
+                <a class="nav-link" href="connections.php"><span class="glyphicon glyphicon-user"></span> Matches</a>
+            </li>
+
+            <li class="nav-item">   
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+
+            <form method="post">
              <input type="submit" name="buttonLogOut"
-                     class="btn btn-primary" value="Log out" />
+                     class="btn btn-primary" value="Logout" />
          </form>
-       </ul>
-     </div>
-     </nav>
+ </div>
+ </nav>
 
     <br>
     
