@@ -173,16 +173,47 @@
                 $currUserAge = $row2['Age'];
                 
                 //Suggested users based on age
-                $sqlSugg1 = "SELECT * FROM profile WHERE Age <= ('$currUserAge'+3) AND Age >= ('$currUserAge'-3)";
-                $sqlSugg1Result = mysqli_query($conn,$sqlSugg1);
+                //$sqlSugg1 = "SELECT * FROM profile WHERE Age <= ('$currUserAge'+3) AND Age >= ('$currUserAge'-3)";
+                //$sqlSugg1Result = mysqli_query($conn,$sqlSugg1);
                 
-                foreach($sqlSugg1Result as $userResults){
-                    $userDisplay = $userResults['email'];
-                    getProfilePreview($userDisplay);
-                    getSwipeBar($userDisplay);
+                //foreach($sqlSugg1Result as $userResults){
+                //    $userDisplay = $userResults['email'];
+                //    getProfilePreview($userDisplay);
+                //    getSwipeBar($userDisplay);
+                //}
+                
+                //Suggested users based on interest and age combined
+                $sql3 = "SELECT * FROM Interests WHERE UserID = '$UserID'";
+                $results3 = mysqli_query($conn,$sql3);
+                $row3 = mysqli_fetch_array($results3);
+                //Select logged in users interests
+                $currUserInterest1 = $row3['InterestID'];
+                $currUserInterest2 = $row3['InterestID2'];
+                $currUserInterest3 = $row3['InterestID3'];
+
+                //Query database for UserIDs matching user interests above
+                $sql4 = "SELECT * From Interests WHERE ('$currUserInterest1' = InterestID OR '$currUserInterest1' = InterestID2 OR '$currUserInterest1' = InterestID3 OR
+                                                                '$currUserInterest2' = InterestID OR '$currUserInterest2' = InterestID2 OR '$currUserInterest2' = InterestID3 OR
+                                                                '$currUserInterest3' = InterestID OR '$currUserInterest3' = InterestID2 OR '$currUserInterest3' = InterestID3) AND UserID != '$UserID'";
+                $results4 = mysqli_query($conn,$sql4);
+                //Iterate through results
+                foreach($results4 as $userInterestResults){
+                    //Reduce results based on age
+                    $userDisplay1 = $userInterestResults['UserID'];
+                    $sql51 = "SELECT UserID FROM profile WHERE Age <= ('$currUserAge'+3) AND Age >= ('$currUserAge'-3) AND UserID = '$userDisplay1'";
+                    $sql51Result = mysqli_query($conn,$sql51);
+                    //Iterate through results
+                    foreach($sql51Result as $finalUserIDTemp){
+                        //Display users who match interest and age requirement
+                        $finalUserID = $finalUserIDTemp['UserID'];
+                        $sql5 = "SELECT Handle FROM user WHERE UserID = '$finalUserID'";
+                        $results5 = mysqli_query($conn,$sql5);
+                        $handle = mysqli_fetch_array($results5);
+                        $handleFinal = $handle['Handle'];
+                        getProfilePreview($handleFinal);
+                        getSwipeBar($handleFinal);
+                    }  
                 }
-                
-                //Suggested users based on interest
                 
                 ?>
             </div>
