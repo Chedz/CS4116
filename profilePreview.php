@@ -83,7 +83,7 @@
               //print_r($row);
               ?>
               <div class="container pt-3">
-                   <div class="row justify-content-center">
+                   <div class="row justify-content-center" style="padding-top: 15px">
               <?php
                   // echo '<img src="'.$row['Photo'].'" alt="Profile Image" style="width: 250px; height: 250px; border: 1px solid black;">';
                   echo '<img class="croppedProfile" src="'.$row['Photo'].'">';
@@ -137,6 +137,61 @@
               </div>
             </div>
 
+            <!--TEST-->
+            <?php
+                        $currUser = $userEmail;
+                        $sql = "SELECT UserID FROM user WHERE Handle = '$currUser'";
+                        $results = mysqli_query($conn,$sql);
+                        $row1 = mysqli_fetch_array($results);
+                        $tempUserID = $row1[0];
+
+                        $sql2 = "SELECT * FROM Interests WHERE UserID = '$tempUserID'";
+                        $results2 = mysqli_query($conn,$sql2);
+                        if($results2){
+                            if(mysqli_num_rows($results2)>0){ //IF user has profile, shows details
+                                while($row = mysqli_fetch_array($results2)){
+                                //print_r($row);
+                                $sql3 = "SELECT InterestName FROM AvailableInterests WHERE InterestID = '$row[1]'";
+                                    $results3 = mysqli_query($conn,$sql3);
+                                    $row3 = mysqli_fetch_array($results3);
+                                    $tempIntID = $row3[0];
+                                $sql4 = "SELECT InterestName FROM AvailableInterests WHERE InterestID = '$row[2]'";
+                                    $results4 = mysqli_query($conn,$sql4);
+                                    $row4 = mysqli_fetch_array($results4);
+                                    $tempIntID2 = $row4[0];
+                                $sql5 = "SELECT InterestName FROM AvailableInterests WHERE InterestID = '$row[3]'";
+                                    $results5 = mysqli_query($conn,$sql5);
+                                    $row5 = mysqli_fetch_array($results5);
+                                    $tempIntID3 = $row5[0];
+
+
+                    ?>
+                    <!-- Interested In -->
+                    <br>
+                    <div class="row justify-content-center" style="margin-top:-20px">
+                    <h5>Interested In..</h5>
+                    </div>
+                    <div class="row justify-content-center">
+                    <div style="width: 250px; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px;">
+                        <?php echo $tempIntID . "<br>";?>
+                    </div>
+                    </div>
+                    <div class="row justify-content-center">
+                    <div style="width: 250px; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px;">
+                        <?php echo $tempIntID2 . "<br>";?>
+                    </div>
+                    </div>
+                    <div class="row justify-content-center">
+                    <div style="width: 250px; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px;">
+                        <?php echo $tempIntID3 . "<br>";?>
+                    </div>
+                    </div>
+                    <?php
+                                }
+                            }
+                        }
+                    ?>
+            <!--TEST-->
 
          </div>
 
@@ -166,15 +221,15 @@
           </div>
         </form> -->
         <div class="container pt-3">
-          <div class="row justify-content-center">
+          <div class="row justify-content-center" style="margin-top: -10px">
             <form method="post">
                 <input type="submit" name="buttonSwipeLeft"
-                        class="btn btn-primary" value="Swipe Left" />
+                        class="btn btn-primary" value="Swipe Left" id="dislike"/>
             </form>
 
             <form method="post">
                 <input type="submit" name="buttonSwipeRight"
-                        class="btn btn-primary" value="Swipe Right" />
+                        class="btn btn-primary" value="Swipe Right" id="like"/>
             </form>
           </div>
 
