@@ -12,10 +12,28 @@
     h1 {text-align: center;}
     h4 {text-align: center;}
     p {text-align: center;}
-    /* div {text-align: center;} */
-  </style>
+
+    .login-register-text {
+        color: #113;
+        font-weight: 600;
+    }
+
+    .container {
+    width: 400px;
+    min-height: 400px;
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    padding: 40px 30px;
+    }
+    
+
+    </style>
+
 </head>
+
 <body>
+
  <?php
    session_start();
    if(!empty($_SESSION['loggedin'])){ header("location: home.php");}  //check if user already logged in
@@ -28,21 +46,33 @@
        echo "Surname:".$_POST['surname'].'<br />';
        echo "Password:".$_POST['password'].'<br />';
        echo "Email:".$_POST['email'].'<br />';
+        $uppercase = preg_match('@[A-Z]@', $_POST['password']);
+        $lowercase = preg_match('@[a-z]@', $_POST['password']);
+        $number    = preg_match('@[0-9]@', $_POST['password']);
      // Check if name has been entered
-     if(empty($_POST['Firtsname'])) {
+     if(empty($_POST['Firstname'])) {
        $errName= 'Please enter your first name';
      }
      if(empty($_POST['Surname'])) {
        $errName= 'Please enter your surname';
      }
      // Check if email has been entered and is valid
-     else if(empty($_POST['email'])) {
+     if(empty($_POST['email'])) {
        $errEmail = 'Please enter a valid email address';
      }
      // check if a password has been entered and if it is a valid password
-     else if(empty($_POST['password']) || (preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $_POST["password"]) === 0)) {
+     if(empty($_POST['password']) || !$uppercase || !$lowercase || !$number || strlen($_POST['password'] < 8)) {
        $errPass = '<p class="errText">Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit</p>';
-     } else {
+     } 
+     if(empty($_POST['cpassword'])) {
+       $errEmail = 'Please Confirm Password';
+     }
+     if($_POST['password'] != $_POST['cpassword'])
+    {
+        echo('Passwords do not match!');
+    }
+     
+     else {
        echo "The form has been submitted";
      }
    }
@@ -57,76 +87,110 @@
     }
 
  ?>
- <nav class="navbar navbar-dark bg-dark">
-   <div class="container">
+ <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+   <div class="container-fluid">
    <!-- <div class="navbar-header">
      <a class="navbar-brand" href="#">WebSiteName</a>
    </div> -->
-   <a href="index.php" class="navbar-left"><img src="images/uniConnectLogo.png"></a>
-   <ul class="nav navbar-nav">
-     <li class="active"><a href="index.php">Home</a></li>
-   </ul>
-   <ul class="nav navbar-nav">
-     <li><a href="#">About Us</a></li>
-   </ul>
-   <ul class="nav navbar-nav navbar-right">
-     <li><a href="index.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-     <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-   </ul>
+   <a class= "navbar-brand" href="index.php"><img src="images/uniConnectLogo.png"></a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse"
+   data-target="#navbarResponsive"> 
+        <span class="navbar=toggler-icon"></span>
+    </button>    
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">   
+                <a class="nav-link" href="index.php">Home</a>
+            </li>
+
+            <li class="nav-item">   
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+
+            <li class="nav-item">   
+                <a class="nav-link" href="index.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+            </li>
+
+            <li class="nav-item">   
+                <a class="nav-link" href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+            </li>
+
+
+
+  
  </div>
  </nav>
- <div class="container-fluid">
-   <!-- <div class="row" style="min-width:800">
-      <div class="col-sm"><img src="images/uniConnectLogo.png" alt="Logo" ></div>
-      <div class="col-sm text-end">End Text</div>
-     </div> -->
-     <h1 style="padding: 2em 0em 1em 0em;">Welcome to Uni-Connect</h1>
-     <h4 style="padding: 2em 0em 1em 0em;">Interested in meeting other 3rd-level students?</h4>
-     <p style="margin-left: 2.5em;padding: 2em 0em 2em 0em;border-width: 2px;">Create your account by Registering using the form below</p>
+
+<div class="container-fluid">
+  
+      <div class="col-12"><img src="images/FrontPage1.jpeg" width="1000" height="500" style="padding: 0em 0em 0em 20em;border-width: 10px;" alt="Picture" ></div>
+      
+  </div>   
 
 
+
+
+<div id="slides" class="carousel slide" data-ride="carousel">
+<ul class="carousel-indicators">
+        <li data-target="#slides" data-slide-to="0" class="active"></li>
+        <li data-target="#slides" data-slide-to="0"></li>
+</ul>
+<div class="carousel-inner active">
+    <div class="carousel-item">
+        <img src="images/FrontPage1.jpeg">
+    </div>
+    <div class="carousel-item">
+        <img src="images/FrontPage2.jpeg">
+    </div>
+    </div>
+    </div>
+
+  <div class="container">  
    <form role="form" method="post" action = "register.php" method="POST">
+   <p class="login-text" style="font-size: 2rem; font-weight: 800;">Register</p>
      <div class="form-group row">
-       <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-       <div class="col-sm-10">
+       <label for="inputEmail" class="col-sm-3 col-form-label"></label>
+       <div class="input-group">
          <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email" required>
          <?php echo $errEmail; ?>
        </div>
      </div>
      <div class="form-group row">
-      <label for="inputFirst" class="col-sm-2 col-form-label">First Name</label>
-      <div class="col-sm-10">
+      <label for="inputFirst" class="col-sm-3 col-form-label"></label>
+      <div class="input-group">
         <input type="text" class="form-control" id="inputFirst" name="firstname" placeholder="First Name" required>
-        <?php echo $errName; ?>
+        <?php echo $errName;?>
+        
       </div>
     </div>
     <div class="form-group row">
-      <label for="inputSurname" class="col-sm-2 col-form-label">Surname</label>
-      <div class="col-sm-10">
+      <label for="inputSurname" class="col-sm-3 col-form-label"></label>
+      <div class="input-group">
         <input type="text" class="form-control" id="inputSurname" name="surname" placeholder="Surname" required>
         <?php echo $errName; ?>
     </div>
     </div>
      <div class="form-group row">
-       <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-       <div class="col-sm-10">
+       <label for="inputPassword3" class="col-sm-3 col-form-label"></label>
+       <div class="input-group">
          <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Password" required>
          <?php echo $errPass; ?>
        </div>
      </div>
      <div class="form-group row">
-       <div class="offset-sm-2 col-sm-10">
+       <label for="inputPassword3" class="col-sm-3 col-form-label"></label>
+       <div class="input-group">
+         <input type="password" class="form-control" id="confirmPassword" name="cpassword" placeholder="Confirm Password" required>
+         <?php echo $errPass; ?>
+       </div>
+     </div>
+     <div class="form-group row">
+       <div class="offset-sm-5 col-sm-">
          <input type="submit" value="Register" name="register" class="btn btn-primary"/>
        </div>
      </div>
    </form>
-
-   <h4> Already a User? Login here </h4>
-    <form method="post">
-      <div class="row justify-content-center">
-        <input type="submit" name="buttonSignIn"
-                class="btn btn-primary" value="Sign In"/>
-      </div>
+      <p class="login-register-text">Have an account? <a href="login.php">Login Here</a>.</p>
     </form>
    </div>
    <br>
@@ -166,5 +230,6 @@
  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+ <script src="js/register.js"</script>
 </body>
 </html>
