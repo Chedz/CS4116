@@ -28,7 +28,8 @@
             if($data['Password'] === $password) {
                 echo "<h1>Login Success</h1>";
                 $_SESSION['loggedin'] = true;
-                $_SESSION['username'] = $username;
+                $_SESSION['username'] = $email;
+                $_SESSION['userID'] = $data['UserID'];
                 echo "Session variables are set.";
                 print_r($_SESSION);
                 if(!empty($_SESSION['loggedin'])){ header("location: home.php");}

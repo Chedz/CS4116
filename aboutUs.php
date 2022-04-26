@@ -25,8 +25,8 @@
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
  <title>Home</title>
  <style>
-   /* h1 {text-align: center;}
-   h4 {text-align: center;} */
+   /* h1 {text-align: center;} */
+   h4 {text-align: center;}
    p {text-align: center;}
    /* div {text-align: center;} */
  </style>
@@ -70,20 +70,23 @@
 
 
 <!--Connections Feed Here-->
-    <div class="container-fluid">
-      <p>About us here</p>
+<div class="container-fluid">
+  <h4 style="padding: 3em 0em 1em 0em;">What is Uni-Connect?</h4>
+     <div class="row justify-content-center">
+       <p style="padding: 1em 0em 1em 0em;border-width: 2px;">
+         Uni-connect is a dating application tailored for third level students.
+       </p>
+      <p style="padding: 1em 0em 1em 0em;border-width: 2px;">
+         There are dating apps for a plethora of niches, as a university student,
+          you have specific needs and probably don't want to wade through all of the older people trying to get married.
+        </p>
+       <p style="padding: 1em 0em 1em 0em;border-width: 2px;">
+            You need dating apps that are specifically tailored for your lifestyle like Uni-Connect!
+       </p>
+     </div>
+  </div>
 
 
-</div>
-
-    <!-- <form action="profilePage.php">
-        <input type="submit" value="Profile" />
-    </form>
-
-    <form method="post">
-        <input type="submit" name="buttonLogOut"
-                class="button" value="Log out" />
-    </form> -->
 <!-- Footer and spacing -->
     <br>
     <footer class="bg-light text-center text-lg-start">

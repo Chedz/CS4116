@@ -26,7 +26,7 @@
     box-shadow: 0 0 5px rgba(0,0,0,.3);
     padding: 40px 30px;
     }
-    
+
 
     </style>
 
@@ -63,7 +63,7 @@
      // check if a password has been entered and if it is a valid password
      if(empty($_POST['password']) || !$uppercase || !$lowercase || !$number || strlen($_POST['password'] < 8)) {
        $errPass = '<p class="errText">Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit</p>';
-     } 
+     }
      if(empty($_POST['cpassword'])) {
        $errEmail = 'Please Confirm Password';
      }
@@ -71,7 +71,7 @@
     {
         echo('Passwords do not match!');
     }
-     
+
      else {
        echo "The form has been submitted";
      }
@@ -94,38 +94,38 @@
    </div> -->
    <a class= "navbar-brand" href="index.php"><img src="images/uniConnectLogo.png"></a>
    <button class="navbar-toggler" type="button" data-toggle="collapse"
-   data-target="#navbarResponsive"> 
+   data-target="#navbarResponsive">
         <span class="navbar=toggler-icon"></span>
-    </button>    
+    </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
 
-            <li class="nav-item">   
-                <a class="nav-link" href="#">About Us</a>
+            <li class="nav-item">
+                <a class="nav-link" href="aboutUs.php">About Us</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="index.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a>
             </li>
 
 
 
-  
+
  </div>
  </nav>
 
 <div class="container-fluid">
-  
+
       <div class="col-12"><img src="images/FrontPage1.jpeg" width="1000" height="500" style="padding: 0em 0em 0em 20em;border-width: 10px;" alt="Picture" ></div>
-      
-  </div>   
+
+  </div>
 
 
 
@@ -145,7 +145,7 @@
     </div>
     </div>
 
-  <div class="container">  
+  <div class="container">
    <form role="form" method="post" action = "register.php" method="POST">
    <p class="login-text" style="font-size: 2rem; font-weight: 800;">Register</p>
      <div class="form-group row">
@@ -160,7 +160,7 @@
       <div class="input-group">
         <input type="text" class="form-control" id="inputFirst" name="firstname" placeholder="First Name" required>
         <?php echo $errName;?>
-        
+
       </div>
     </div>
     <div class="form-group row">
