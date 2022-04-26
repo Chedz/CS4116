@@ -74,16 +74,44 @@
       <p>Connections here</p>
 
     <?php
-     require_once 'includes/dbh.inc.php';
+     require 'includes/dbh.inc.php';
      $matchConn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
      require_once 'profilePreview.php';
      //Function to get the social media accounts (Instagram and Snapchat) of a user given an userID
-     function getsocials($userID){
+     function getSocials($userID){
+      $socialConn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
       $sqlSocial = "SELECT * FROM profile WHERE UserID = '$userID'";
-      $socialResults = mysqli_query($matchConn, $sqlSocial);
-      $socialRow = mysqli_fetch_array($socialResults);
+      $socialResults = mysqli_query($socialConn, $sqlSocial);
+
+      if($socialResults){
+        $socialRow = mysqli_fetch_array($socialResults);
+        // echo "Instagram";
+        // echo $socialRow["Instagram"];
+        // echo "Snapchat";
+        // echo $socialRow["Snapchat"];
+        //echo "<br>" . $socialRow['Instagram'] . "<br>" . $socialRow['Snapchat'];
+
+        echo '<div class="container pt-3">';
+        echo '<div class="row justify-content-center">';
+        echo '  <div style="width: 16rem; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px; padding: 5px; margin-top: 5px;">';
+        echo "Instagram: " . $socialRow['Instagram'] . "<br>";
+        echo '  </div>';
+        echo '</div>';
+        echo '<div class="row justify-content-center">';
+        echo '  <div style="width: 16rem; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px; padding: 5px; margin-top: 5px;">';
+        echo "Snapchat: " . $socialRow['Snapchat'] . "<br>";
+        echo '  </div>';
+        echo '</div>';
+        echo '</div>';
+      }else {
+        echo "no socials found";
+      }
+
       //Prints out Instagram and Snapchat of user put into function
-      echo "<br>" . $socialRow['Instagram'] . "<br>" . $socialRow['Snapchat'];
+      //echo "<br>" . $socialRow['Instagram'] . "<br>" . $socialRow['Snapchat'];
+
+
+      $socialConn->close();
      }
 
      $tempUserID = $_SESSION['username'];
@@ -142,7 +170,7 @@
              //echo $tempMail;
              getProfilePreview($tempMail);
              printf("<br>");
-             getsocials($otherUserID);
+             getSocials($id);
              printf("<br>");
            }
 
