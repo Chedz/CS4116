@@ -38,7 +38,7 @@
     margin-top: 20px;
     margin:0 auto;
     }
-    
+
 
     </style>
  </head>
@@ -48,19 +48,19 @@
         if(!empty($_SESSION['loggedin'])){ header("location: home.php");}  //check if user already logged in
         //echo "Test login page";
     ?>
-    
+
     <div class="container1">
     <div class="row" style="min-width:800">
       <div class="col-sm-1"><img src="images/uniConnectLogo.png" alt="Logo" ></div>
-      
+
      </div>
     <div class="container">
     <form action="auth.php" method="POST">
     <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
     <div class="form-group row">
-            <label for="email" class="col-sm-2 col-form-label"></label> 
+            <label for="email" class="col-sm-2 col-form-label"></label>
             <div class="input-group">
-            <input type="email" id="email" class="form-control" name="email" placeholder="Email" required> 
+            <input type="email" id="email" class="form-control" name="email" placeholder="Email" required>
         </div>
     </div>
     <div class="form-group row">
@@ -73,8 +73,9 @@
         </div>
      </div>
     </form>
-    <!--<form method="post">  -->
+    <form method="post">
        <p class="login-register-text">New User? <a href="index.php">Register Here</a>.</p>
+       <p class="login-register-text">Admin User? <a href="adminLogin.php">Login Here</a>.</p>
      </form>
 
     <?php
@@ -83,6 +84,6 @@
      }
      ?>
 
-     
+
  </body>
  </html>

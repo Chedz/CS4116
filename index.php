@@ -16,7 +16,7 @@
     body{
     background-color: #868c93;
     }
-    
+
     img{
     border-radius: 5%
     }

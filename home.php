@@ -218,6 +218,10 @@
                     $sql51Result = mysqli_query($conn,$sql51);
                     //Iterate through results
                     foreach($sql51Result as $finalUserIDTemp){
+                      //Check if existing connection
+                      //
+                      // $sql = "SELECT * FROM Connections WHERE userID1  = $_SESSION['userID'] AND userID2  = '$finalUserIDTemp'"; //check if user2 has already attempted to connect with user1 previously
+                      // $results = mysqli_query($conn, $sql);
                         //Display users who match interest and age requirement
                         $finalUserID = $finalUserIDTemp['UserID'];
                         $sql5 = "SELECT Handle FROM user WHERE UserID = '$finalUserID'";
