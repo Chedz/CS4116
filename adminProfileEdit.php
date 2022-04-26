@@ -15,8 +15,11 @@
         session_start();
         if(empty($_SESSION['adminloggedin'])){ header("location: adminLogin.php");}  //check if user not logged in, re-direct to login
 
-        if(array_key_exists('buttonLogOut', $_POST)) {
-            logUserOut();
+        if(array_key_exists('buttonSelectUser', $_POST)) {
+            //Testing
+            echo $_POST['buttonSelectUser'];
+            $selectedProfile = $_POST['buttonSelectUser'];
+            $_SESSION['selectedProfile'] = $selectedProfile;
         }
         function logUserOut() {
             //echo "This is Button1 that is selected";
@@ -24,6 +27,7 @@
             session_destroy();
             header("location: adminLogin.php");
         }
+        echo $selectedUser;
     ?>
     <!-- Navbar-->
          <nav class="navbar navbar-dark bg-dark">
@@ -58,12 +62,12 @@
         <div class="row">
         <div class="col" id="div1" style="border-radius: 25px; border: 2px solid purple;">
             <h5>Update User Profile</h5>
-            <form action="editProfile.php" method="POST" enctype="multipart/form-data">
+            <form action="adminEditUserProfile.php" method="POST" enctype="multipart/form-data">
 
             <?php
                 $currUser = $_POST['usernameEdit'];
 
-                $sql = "SELECT * FROM profile WHERE email = '$currUser'";
+                $sql = "SELECT * FROM profile WHERE UserID = '$selectedProfile'";
 
                 $results = mysqli_query($conn,$sql);
 
@@ -73,7 +77,7 @@
                             //print_r($row);
                             ?>
                                 <div class="form-group">
-                        <input type="text" class="form-control" id="email" name="email" placeholder="email" value="<?php echo $_SESSION['username'];?>" readonly="true" style="color:#808080"/>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="email" value="<?php echo $row['email'];?>" readonly="true" style="color:#808080"/>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" id="Firstname" name="Firstname" placeholder="First Name" value="<?php echo $row['Firstname'];?>"/>
@@ -316,7 +320,7 @@
                     <h5>Profile Preview</h5>
                     <?php
                         $currUser = $_POST['usernameEdit'];
-                        $sql = "SELECT * FROM profile WHERE email = '$currUser'";
+                        $sql = "SELECT * FROM profile WHERE UserID = '$selectedProfile'";
                         $results = mysqli_query($conn,$sql);
                         if($results){
                             if(mysqli_num_rows($results)>0){ //IF user has profile, shows details
@@ -362,8 +366,8 @@
                         $sql = "SELECT UserID FROM user WHERE Handle = '$currUser'";
                         $results = mysqli_query($conn,$sql);
                         $row1 = mysqli_fetch_array($results);
-                        $tempUserID = $row1[0];
-
+                        //$tempUserID = $row1[0];
+                        $tempUserID = $selectedProfile;
                         $sql2 = "SELECT * FROM Interests WHERE UserID = '$tempUserID'";
                         $results2 = mysqli_query($conn,$sql2);
                         if($results2){
