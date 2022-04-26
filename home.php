@@ -151,6 +151,46 @@
         ?>
          <!-- Also need to add buttons so a user can swipe on profiles -->
      </div>
+   
+   <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm">
+                <h4> Suggested Users </h4>
+                <!--Suggested users bar/box -->
+                <?php
+                require_once 'includes/dbh.inc.php';
+                $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
+
+                $tempUserID = $_SESSION['username'];
+                $sql1 = "SELECT UserID FROM user WHERE Handle = '$tempUserID'";
+                $results1 = mysqli_query($conn,$sql1);
+                $row1 = mysqli_fetch_array($results1);
+                $UserID = $row1['UserID'];
+                $sql2 = "SELECT * FROM profile WHERE UserID = '$UserID'";
+                $results2 = mysqli_query($conn,$sql2);
+                $row2 = mysqli_fetch_array($results2);
+                $currUserAge = $row2['Age'];
+                
+                //Suggested users based on age
+                $sqlSugg1 = "SELECT * FROM profile WHERE Age <= ('$currUserAge'+3) AND Age >= ('$currUserAge'-3)";
+                $sqlSugg1Result = mysqli_query($conn,$sqlSugg1);
+                
+                foreach($sqlSugg1Result as $userResults){
+                    $userDisplay = $userResults['email'];
+                    getProfilePreview($userDisplay);
+                    getSwipeBar($userDisplay);
+                }
+                
+                //Suggested users based on interest
+                
+                ?>
+            </div>
+            <div class="col-sm">
+                <h4> Random Users </h4>
+            </div>
+        </div>
+     </div>
 
      <!-- <form action="profilePage.php">
          <input type="submit" value="Profile" />
