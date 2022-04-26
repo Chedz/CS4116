@@ -17,7 +17,6 @@
 
         if(array_key_exists('buttonSelectUser', $_POST)) {
             //Testing
-            echo $_POST['buttonSelectUser'];
             $selectedProfile = $_POST['buttonSelectUser'];
             $_SESSION['selectedProfile'] = $selectedProfile;
         }
@@ -59,6 +58,10 @@
     <br>
 
     <div class="container">
+        <form method="POST">
+            <input type="submit" name="deleteUser" class="btn btn-primary" value="Delete User"/>
+            <input type="submit" name="banUser" class="btn btn-primary" value="Ban User"/>
+          </form>
         <div class="row">
         <div class="col" id="div1" style="border-radius: 25px; border: 2px solid purple;">
             <h5>Update User Profile</h5>

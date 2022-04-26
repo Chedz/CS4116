@@ -123,7 +123,7 @@
 
 
      //Get all the Connections made by the user that have been accepted
-     $sqlconnections = "SELECT * FROM Connections WHERE userID1  = '$currUserID' OR userID2 = '$currUserID' AND isAccepted = 1";
+     $sqlconnections = "SELECT * FROM Connections WHERE (userID1  = '$currUserID' OR userID2 = '$currUserID') AND isAccepted = 1";
      $matchResults = mysqli_query($matchConn, $sqlconnections);
      // if (mysqli_num_rows($results) == 0){
      //   // The query returned 0 rows!
