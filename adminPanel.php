@@ -175,7 +175,12 @@
                                                                   //     <input id="tea-submit" type="submit" name="submit" value="Tea">
                                                                   //     <input id="coffee-submit" type="submit" name="submit" value="Coffee">
                                                                   // </form>
-
+                                                                  ?>
+                                                                  <form action="adminProfileEdit.php" method="post">
+                                                                  <input type="submit" name="buttonSelectUser" class="btn btn-primary" value="<?php echo $tempUserID;?>"/>
+                                                                  
+                                                                  </form>
+                                                                <?php
                                                                   printf("<br>");
               					    }
                                                       }
