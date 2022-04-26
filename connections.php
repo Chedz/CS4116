@@ -78,8 +78,8 @@
      }
 
      $tempUserID = $_SESSION['username'];
-                $sql1 = "SELECT UserID FROM user WHERE Handle = '$tempUserID'";
-                $results1 = mysqli_query($conn,$sql1);
+                $sqluser = "SELECT UserID FROM user WHERE Handle = '$tempUserID'";
+                $results1 = mysqli_query($conn,$sqluser);
                 $row1 = mysqli_fetch_array($results1);
                 $currUserID = $row1['UserID']; //initiated connection
                 //echo $User1ID;
@@ -95,9 +95,9 @@
       foreach($results as $temprow){
       //$isAcceptedArray[] = $temprow['user2ID'];
         if ($currUserID = $temprow['user1ID']){
-          $isAcceptedArray[] = $temprow['user1ID']; 
-        } else {
           $isAcceptedArray[] = $temprow['user2ID']; 
+        } else {
+          $isAcceptedArray[] = $temprow['user1ID']; 
         }
       }
       //Present profile preview of the users that have made connections with the current user
@@ -113,11 +113,8 @@
         printf("<br>"); 		    
       }
      }
-     
-    
+     $conn->close();
     ?>
-
-
     <!-- <form action="profilePage.php">
         <input type="submit" value="Profile" />
     </form>
