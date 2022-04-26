@@ -61,6 +61,7 @@
         <form method="POST">
             <input type="submit" name="deleteUser" class="btn btn-primary" value="Delete User"/>
             <input type="submit" name="banUser" class="btn btn-primary" value="Ban User"/>
+            <input type="submit" name="unbanUser" class="btn btn-primary" value="Unban User"/>
           </form>
         <div class="row">
         <div class="col" id="div1" style="border-radius: 25px; border: 2px solid purple;">
