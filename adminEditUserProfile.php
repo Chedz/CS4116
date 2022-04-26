@@ -2,56 +2,41 @@
  <html>
  <head>
     <title>Profile change</title>
-    <meta http-equiv = "refresh" content = "3; url = http://14-cs4116.infinityfreeapp.com/profilePage.php" />
+    <meta http-equiv = "refresh" content = "2; url = http://14-cs4116.infinityfreeapp.com/adminPanel.php" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="images/uniConnectLogo.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
  </head>
- <style>
-    body {
-    background-color: #868c93;
-    }
-
- </style>
  <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-   <div class="container-fluid">
-   <a class= "navbar-brand" href="index.php"><img src="images/uniConnectLogo.png"></a>
-   <button class="navbar-toggler" type="button" data-toggle="collapse"
-   data-target="#navbarResponsive"> 
-        <span class="navbar=toggler-icon"></span>
-    </button>    
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">   
-                <a class="nav-link" href="index.php">Home</a>
-            </li>
-
-            <li class="nav-item">   
-                <a class="nav-link" href="profilePage.php"><span class="glyphicon glyphicon-user"></span> Profile</a>
-            </li>
-
-            <li class="nav-item">   
-                <a class="nav-link" href="search.php"><span class="glyphicon glyphicon-user"></span> Search</a>
-            </li>
-
-            <li class="nav-item">   
-                <a class="nav-link" href="connections.php"><span class="glyphicon glyphicon-user"></span> Matches</a>
-            </li>
-
-            <li class="nav-item">   
-                <a class="nav-link" href="#">About Us</a>
-            </li>
-
-            <form method="post">
+    <!-- Navbar-->
+     <nav class="navbar navbar-dark bg-dark">
+       <div class="container">
+       <!-- <div class="navbar-header">
+         <a class="navbar-brand" href="#">WebSiteName</a>
+       </div> -->
+       <a href="home.php" class="navbar-left"><img src="images/uniConnectLogo.png"></a>
+       <ul class="nav navbar-nav">
+         <li class="active"><a href="home.php">Home</a></li>
+       </ul>
+       <ul class="nav navbar-nav">
+         <li><a href="connections.php">Matches</a></li>
+       </ul>
+       <ul class="nav navbar-nav">
+         <li><a href="search.php">Search</a></li>
+       </ul>
+       <ul class="nav navbar-nav navbar-right">
+         <li><a href="profilePage.php"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+         <!-- <li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+         <form method="post">
              <input type="submit" name="buttonLogOut"
-                     class="btn btn-primary" value="Logout" />
+                     class="btn btn-primary" value="Log out" />
          </form>
- </div>
- </nav>
+       </ul>
+     </div>
+     </nav>
 
     <br>
 
@@ -62,13 +47,12 @@
 
     //if(!empty($_SESSION['loggedin'])){ header("location: home.php");}  //check if user already logged in
     //$currUserID = $_SESSION['username'];
-    $tempUserID = $_SESSION['username'];
-                $sql1 = "SELECT UserID FROM user WHERE Handle = '$tempUserID'";
+    $tempUserID = $_SESSION['selectedProfile'];
+                $sql1 = "SELECT Handle FROM user WHERE UserID = '$tempUserID'";
                 $results1 = mysqli_query($conn,$sql1);
                 $row1 = mysqli_fetch_array($results1);
-                $UserID = $row1['UserID'];
+                $userEmail = $row1['Handle'];
     //echo $currUserID;
-    $userEmail = $_SESSION['username'];
     //Profile Update Variables
     $firstName = $_POST['Firstname'];
     $surname = $_POST['Surname'];
@@ -123,26 +107,26 @@
     if($conn->connect_error){
         die('Connection failed : '.$conn->connect_error);
     } else {
-        $sql = "SELECT * FROM profile WHERE UserID = '$UserID'";
+        $sql = "SELECT * FROM profile WHERE UserID = '$tempUserID'";
         $results = mysqli_query($conn, $sql);
         if($results){
             if(mysqli_num_rows($results)>0){ //IF UserID exists in profile table, update data in corresponding row
                 if(empty($_FILES['userImage'])){
-                    $stmt = $conn->prepare("UPDATE profile SET Firstname = '$firstName', Surname = '$surname', Age='$age', Smoker='$smoker', Drinker='$drinker', Gender='$gender', Seeking='$seeking', Institution='$university',                                               Course='$course', Location='$location', Instagram='$instagram', Snapchat='$snapchat', Occupation='$occupation', Description='$description', email='$userEmail' WHERE UserID='$UserID'");
+                    $stmt = $conn->prepare("UPDATE profile SET Firstname = '$firstName', Surname = '$surname', Age='$age', Smoker='$smoker', Drinker='$drinker', Gender='$gender', Seeking='$seeking', Institution='$university',                                               Course='$course', Location='$location', Instagram='$instagram', Snapchat='$snapchat', Occupation='$occupation', Description='$description', email='$userEmail' WHERE UserID='$tempUserID'");
                 } else {
-                    $stmt = $conn->prepare("UPDATE profile SET Firstname = '$firstName', Surname = '$surname', Age='$age', Smoker='$smoker', Drinker='$drinker', Gender='$gender', Seeking='$seeking', Institution='$university',                                               Course='$course', Location='$location', Instagram='$instagram', Snapchat='$snapchat', Occupation='$occupation', Description='$description', email='$userEmail', Photo='$targetFile' WHERE UserID='$UserID'");
+                    $stmt = $conn->prepare("UPDATE profile SET Firstname = '$firstName', Surname = '$surname', Age='$age', Smoker='$smoker', Drinker='$drinker', Gender='$gender', Seeking='$seeking', Institution='$university',                                               Course='$course', Location='$location', Instagram='$instagram', Snapchat='$snapchat', Occupation='$occupation', Description='$description', email='$userEmail', Photo='$targetFile' WHERE UserID='$tempUserID'");
                 }
                 $stmt->execute();
-                echo "<center><p>Profile Updated</center></p>";
+                echo "<center><p>User Profile Updated</center></p>";
                 $stmt->close();
 
                 
             } else { //ELSE UserID doesnt exist, insert new row
                 $stmt = $conn->prepare("INSERT INTO profile (UserID, Firstname, Surname, Age, Smoker, Drinker, Gender, Seeking, Institution, Course, Location, Instagram, Snapchat, Occupation, Description, email, Photo)
                     values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                $stmt->bind_param('issiisssssssssbss',$UserID, $firstName, $surname, $age, $smoker, $drinker, $gender, $seeking, $university, $course, $location, $instagram, $snapchat, $occupation, $description, $userEmail, $targetFile);
+                $stmt->bind_param('issiisssssssssbss',$tempUserID, $firstName, $surname, $age, $smoker, $drinker, $gender, $seeking, $university, $course, $location, $instagram, $snapchat, $occupation, $description, $userEmail, $targetFile);
                 $stmt->execute();
-                echo "<center><p>Profile Updated!</center></p>";
+                echo "<center><p>User Profile Updated!</center></p>";
                 $stmt->close();
                 
             }
@@ -151,17 +135,17 @@
     if($conn->connect_error){
         die('Connection failed : '.$conn->connect_error);
     } else {
-        $sql = "SELECT * FROM Interests WHERE UserID = '$UserID'";
+        $sql = "SELECT * FROM Interests WHERE UserID = '$tempUserID'";
         $results = mysqli_query($conn, $sql);
         if($results){
             if(mysqli_num_rows($results)>0){ //IF UserID exists in Interests table, update data in corresponding row
-                $stmt = $conn->prepare("UPDATE Interests SET InterestID='$InterestID', InterestID2 = '$InterestID2', InterestID3 = '$InterestID3' WHERE UserID='$UserID'");
+                $stmt = $conn->prepare("UPDATE Interests SET InterestID='$InterestID', InterestID2 = '$InterestID2', InterestID3 = '$InterestID3' WHERE UserID='$tempUserID'");
                 $stmt->execute();
                 $stmt->close();
             } else { //ELSE UserID doesnt exist, insert new row
                 $stmt = $conn->prepare("INSERT INTO Interests (UserID, InterestID, InterestID2, InterestID3)
                     values(?,?,?,?)");
-                $stmt->bind_param('iiii',$UserID, $InterestID, $InterestID2, $InterestID3);
+                $stmt->bind_param('iiii',$tempUserID, $InterestID, $InterestID2, $InterestID3);
                 $stmt->execute();
                 $stmt->close();
             }
