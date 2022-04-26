@@ -21,4 +21,16 @@ require_once 'includes/dbh.inc.php';
     //echo "User Deleted";
     header("location: adminPanel.php");
   }
+        if(isset($_POST['banUser'])){
+              $stmt = $conn->prepare("UPDATE profile SET Banned = 1 WHERE UserID = '$selectedProfileDel'");
+              $stmt->execute();
+              $stmt->close();
+              echo "User Banned";
+          }
+          if(isset($_POST['unbanUser'])){
+              $stmt = $conn->prepare("UPDATE profile SET Banned = 0 WHERE UserID = '$selectedProfileDel'");
+              $stmt->execute();
+              $stmt->close();
+              echo "User Unbanned";
+          }
  ?>
