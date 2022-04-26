@@ -13,6 +13,14 @@
     h4 {text-align: center;}
     p {text-align: center;}
 
+    body{
+    background-color: #868c93;
+    }
+
+    img{
+    border-radius: 5%
+    }
+
     .login-register-text {
         color: #113;
         font-weight: 600;
@@ -25,6 +33,7 @@
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0,0,0,.3);
     padding: 40px 30px;
+    margin-top: 30px;
     }
 
 
@@ -123,27 +132,14 @@
 
 <div class="container-fluid">
 
-      <div class="col-12"><img src="images/FrontPage1.jpeg" width="1000" height="500" style="padding: 0em 0em 0em 20em;border-width: 10px;" alt="Picture" ></div>
+      <div class="col-12"><img src="images/Hero.jpeg" width="100%" height="700px" border-radius: "5%" alt="Picture" ></div>
 
   </div>
 
 
 
 
-<div id="slides" class="carousel slide" data-ride="carousel">
-<ul class="carousel-indicators">
-        <li data-target="#slides" data-slide-to="0" class="active"></li>
-        <li data-target="#slides" data-slide-to="0"></li>
-</ul>
-<div class="carousel-inner active">
-    <div class="carousel-item">
-        <img src="images/FrontPage1.jpeg">
-    </div>
-    <div class="carousel-item">
-        <img src="images/FrontPage2.jpeg">
-    </div>
-    </div>
-    </div>
+
 
   <div class="container">
    <form role="form" method="post" action = "register.php" method="POST">
