@@ -15,23 +15,7 @@
       header("location: login.php");
   }
  ?>
-<?php
-    require_once 'includes/dbh.inc.php';
-    $tempUserID = $_SESSION['username'];
-    $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
-    $sqlBanned = "SELECT * FROM profile WHERE email = '$tempUserID'";
-    $sqlBannedRes = mysqli_query($conn,$sqlBanned);
-    $rowBan = mysqli_fetch_array($sqlBannedRes);
-    $isBanned = $rowBan['Banned'];
-    if($isBanned == NULL || $isBanned == 0){
-        //Do nothing, user is not banned
-    } else if($isBanned == 1){
-        //User is banned, redirect
-        header("location: userBanned.php");
-    }
-    $conn->close();
-    
- ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
