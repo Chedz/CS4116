@@ -7,6 +7,42 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Profile Page</title>
 </head>
+<style>
+
+  body {
+    background-color: #868c93;
+}
+}
+  .wrapper{
+    display: flex;
+}
+  .container {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: #FFF;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,.3);
+  padding: 50px 50px;
+  margin-top: 20px;
+  }
+
+  .containera {
+  flex: .4;
+  width: 200px;
+  height: 725px;
+  box-shadow: 0 0 5px rgba(0,0,0,.3);
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-bottom: 50px;
+  margin-top: 30px;
+
+  }
+
+
+</style>
+
+
 <body>
     <?php
         require_once 'includes/dbh.inc.php';
@@ -27,8 +63,8 @@
    <div class="container-fluid">
    <a class= "navbar-brand" href="index.php"><img src="images/uniConnectLogo.png"></a>
    <button class="navbar-toggler" type="button" data-toggle="collapse"
-   data-target="#navbarResponsive">
-        <span class="navbar=toggler-icon"></span>
+    data-target="#navbarResponsive">
+        <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
@@ -61,9 +97,10 @@
 
     <br>
 
+<div class="wrapper">
     <div class="container">
         <div class="row">
-        <div class="col" id="div1" style="border-radius: 25px; border: 2px solid purple;">
+        <div class="col" id="div1" style="border-radius: 25px;">
             <h5>Update User Profile</h5>
             <form action="editProfile.php" method="POST" enctype="multipart/form-data">
 
@@ -319,7 +356,8 @@
 
                 </div>
                 </form>
-                <div class="col" id="div2" style="border-radius: 25px; border: 2px solid purple;">
+        <div class="containera">
+                <div class="col" id="div2" style="border-radius: 25px;">
                     <h5>Profile Preview</h5>
                     <?php
                         $currUser = $_SESSION['username'];
@@ -410,7 +448,8 @@
                         }
                     ?>
                 </div>
-
+              </div>
+              </div>
         </div>
         </div>
     <!--Footer-->
