@@ -29,7 +29,7 @@
     }
 
     .container {
-    width: 1000px;
+    width: 400px;
     min-height: 400px;
     background: #FFF;
     border-radius: 5px;
