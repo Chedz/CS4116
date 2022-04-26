@@ -39,29 +39,29 @@
    <div class="container-fluid">
    <a class= "navbar-brand" href="index.php"><img src="images/uniConnectLogo.png"></a>
    <button class="navbar-toggler" type="button" data-toggle="collapse"
-   data-target="#navbarResponsive"> 
+   data-target="#navbarResponsive">
         <span class="navbar=toggler-icon"></span>
-    </button>    
+    </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="profilePage.php"><span class="glyphicon glyphicon-user"></span> Profile</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="search.php"><span class="glyphicon glyphicon-user"></span> Search</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="connections.php"><span class="glyphicon glyphicon-user"></span> Matches</a>
             </li>
 
-            <li class="nav-item">   
-                <a class="nav-link" href="#">About Us</a>
+            <li class="nav-item">
+                <a class="nav-link" href="aboutUs.php">About Us</a>
             </li>
 
             <form method="post">

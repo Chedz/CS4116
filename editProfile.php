@@ -21,29 +21,29 @@
    <div class="container-fluid">
    <a class= "navbar-brand" href="index.php"><img src="images/uniConnectLogo.png"></a>
    <button class="navbar-toggler" type="button" data-toggle="collapse"
-   data-target="#navbarResponsive"> 
+   data-target="#navbarResponsive">
         <span class="navbar=toggler-icon"></span>
-    </button>    
+    </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="profilePage.php"><span class="glyphicon glyphicon-user"></span> Profile</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="search.php"><span class="glyphicon glyphicon-user"></span> Search</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="connections.php"><span class="glyphicon glyphicon-user"></span> Matches</a>
             </li>
 
-            <li class="nav-item">   
-                <a class="nav-link" href="#">About Us</a>
+            <li class="nav-item">
+                <a class="nav-link" href="aboutUs.php">About Us</a>
             </li>
 
             <form method="post">
@@ -100,11 +100,11 @@
     } else {
         $targetFile = $targetDirectory . "defaultProfilePic.png";
     }
-    
+
     $uploadSuccess = 1;
     $fileTypesAllowed = strtolower(pathinfo($targetFile,PATHINFO_EXTENSION));
 
-    
+
     if($fileTypesAllowed != "jpg" && $fileTypesAllowed != "png" && $fileTypesAllowed != "jpeg"){
         echo "<p><center>File type not allowed</center></p>";
         $uploadSuccess = 0;
@@ -113,8 +113,8 @@
         echo "<p><center>File was not uploaded</center></p>";
     } else {
         if(move_uploaded_file($_FILES["userImage"]["tmp_name"], $targetFile)){
-            
-        } else {   
+
+        } else {
             echo "<center><p>There was an issue with uploading the file</center></p>";
         }
     }
@@ -136,7 +136,7 @@
                 echo "<center><p>Profile Updated</center></p>";
                 $stmt->close();
 
-                
+
             } else { //ELSE UserID doesnt exist, insert new row
                 $stmt = $conn->prepare("INSERT INTO profile (UserID, Firstname, Surname, Age, Smoker, Drinker, Gender, Seeking, Institution, Course, Location, Instagram, Snapchat, Occupation, Description, email, Photo)
                     values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -144,7 +144,7 @@
                 $stmt->execute();
                 echo "<center><p>Profile Updated!</center></p>";
                 $stmt->close();
-                
+
             }
         }
     }

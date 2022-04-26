@@ -27,29 +27,29 @@
    <div class="container-fluid">
    <a class= "navbar-brand" href="index.php"><img src="images/uniConnectLogo.png"></a>
    <button class="navbar-toggler" type="button" data-toggle="collapse"
-   data-target="#navbarResponsive"> 
+   data-target="#navbarResponsive">
         <span class="navbar=toggler-icon"></span>
-    </button>    
+    </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="profilePage.php"><span class="glyphicon glyphicon-user"></span> Profile</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="search.php"><span class="glyphicon glyphicon-user"></span> Search</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="connections.php"><span class="glyphicon glyphicon-user"></span> Matches</a>
             </li>
 
-            <li class="nav-item">   
-                <a class="nav-link" href="#">About Us</a>
+            <li class="nav-item">
+                <a class="nav-link" href="aboutUs.php">About Us</a>
             </li>
 
             <form method="post">
@@ -60,7 +60,7 @@
  </nav>
 
     <br>
-    
+
     <div class="container">
         <div class="row">
         <div class="col" id="div1" style="border-radius: 25px; border: 2px solid purple;">
@@ -69,7 +69,7 @@
 
             <?php
                 $currUser = $_SESSION['username'];
-                
+
                 $sql = "SELECT * FROM profile WHERE email = '$currUser'";
 
                 $results = mysqli_query($conn,$sql);
@@ -272,7 +272,7 @@
                     <!-- INTERESTS -->
                     <div class="form-group">
                     <label>Interests</label>
-                        <select name="interests">  
+                        <select name="interests">
                             <option value="" selected disabled hidden>Select</option>
                             <option value="0">Reading</option>
                             <option value="1">Working Out</option>
@@ -316,7 +316,7 @@
                     }
                 }
             ?>
-                    
+
                 </div>
                 </form>
                 <div class="col" id="div2" style="border-radius: 25px; border: 2px solid purple;">
@@ -329,19 +329,19 @@
                             if(mysqli_num_rows($results)>0){ //IF user has profile, shows details
                                 while($row = mysqli_fetch_array($results)){
                                 //print_r($row);
-                            
+
                     ?>
 
                     <!-- Profile Pic preview -->
 
-                    <?php 
+                    <?php
                         echo '<img src="'.$row['Photo'].'" alt="Profile Image" style="width: 250px; height: 250px; border: 1px solid black;">';
                     ?>
 
-                    
+
                     <br>
                     <!-- Name+surname -->
-                    
+
                     <!-- Age -->
                     <div style="width: 250px; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px; padding: 5px; margin-top: 20px;">
                     <?php echo $row['Age'] . "<br>";?>
@@ -358,7 +358,7 @@
                     <div style="width: 250px; background: rgba(0,0,255,0.3); border: 1px solid purple; border-radius: 2px; padding: 5px; margin-top: 5px;">
                     <?php echo $row['Description'] . "<br>";?>
                     </div>
-                    
+
                     <?php
                                 }
                             }
@@ -389,8 +389,8 @@
                                     $results5 = mysqli_query($conn,$sql5);
                                     $row5 = mysqli_fetch_array($results5);
                                     $tempIntID3 = $row5[0];
-                        
-                            
+
+
                     ?>
                     <!-- Interested In -->
                     <br>

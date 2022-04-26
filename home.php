@@ -106,7 +106,7 @@
     p {text-align: center;}
     /* div {text-align: center;} */
 
-    
+
 
   </style>
  </head>
@@ -140,7 +140,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
+                <a class="nav-link" href="aboutUs.php">About Us</a>
             </li>
 
             <form method="post">
