@@ -52,7 +52,7 @@
                 if($results){ //alter incomplete connection to be complete
                   // echo "found results";
                   if(mysqli_num_rows($results)>0){ //IF UserID exists in profile table, update data in corresponding row
-                    echo "found already existing connection". "<br>";
+                    //echo "found already existing connection". "<br>";
                     //INSERT INTO Connections (ConnectionID, userID1, userID2, ConnectionDate, isAccepted)
 
                       //$stmt = $conn->prepare("");
@@ -60,7 +60,7 @@
                       $sql = "UPDATE Connections SET ConnectionDate='$date', isAccepted=1 WHERE userID1='$User2ID' AND userID2  = '$User1ID'";
 
                       if (mysqli_query($conn, $sql)) {
-                        echo "Connection Updated";
+                        //echo "Connection Updated";
                       } else {
                         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                       }
@@ -69,7 +69,7 @@
                       // $stmt->close();
 
                   } else { //ELSE no previous connection attempt, insert new row
-                    echo "inserting new connection". "<br>";
+                    //echo "inserting new connection". "<br>";
                       // $stmt = $conn->prepare("INSERT INTO Connections (userID1, userID2, isAccepted) values(?,?,?)");
                       // $stmt->bind_param('iii', $User1ID, $User2ID, 0);
                       // $stmt->execute();
@@ -79,7 +79,7 @@
                       $sql = "INSERT INTO Connections (userID1, userID2, isAccepted) VALUES (".$User1ID.",".$User2ID.",0)";
 
                         if (mysqli_query($conn, $sql)) {
-                          echo "New Connection Added";
+                          //echo "New Connection Added";
                         } else {
                           echo "Error: " . $sql . "<br>" . mysqli_error($conn);
                         }
@@ -91,14 +91,13 @@
   }
 
  ?>
-
  <!DOCTYPE html>
  <html lang="en">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link rel="icon" href="images/uniConnectLogo.png" />
+  <link rel="icon" href="images/uniConnectLogo.png" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <title>Home</title>
   <style>
@@ -106,36 +105,41 @@
     h4 {text-align: center;} */
     p {text-align: center;}
     /* div {text-align: center;} */
+
+    
+
   </style>
  </head>
  <body>
-   
+
+
+
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
    <div class="container-fluid">
    <a class= "navbar-brand" href="index.php"><img src="images/uniConnectLogo.png"></a>
    <button class="navbar-toggler" type="button" data-toggle="collapse"
-   data-target="#navbarResponsive"> 
+   data-target="#navbarResponsive">
         <span class="navbar=toggler-icon"></span>
-    </button>    
+    </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="profilePage.php"><span class="glyphicon glyphicon-user"></span> Profile</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="search.php"><span class="glyphicon glyphicon-user"></span> Search</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="connections.php"><span class="glyphicon glyphicon-user"></span> Matches</a>
             </li>
 
-            <li class="nav-item">   
+            <li class="nav-item">
                 <a class="nav-link" href="#">About Us</a>
             </li>
 
@@ -143,27 +147,26 @@
              <input type="submit" name="buttonLogOut"
                      class="btn btn-primary" value="Logout" />
          </form>
-  
+
  </div>
  </nav>
 
 
 <!--User Feed Here-->
      <div class="container-fluid">
-       <p>User Feed here</p>
+       <!--<p>User Feed here</p>-->
        <!-- Add feed functionality here, show user random or specific profiles that the user has not connected with -->
        <?php
           require_once 'profilePreview.php';
-          $currentFeedProfile = 'elfbar@email.com';
+          //$currentFeedProfile = 'elfbar@email.com';
           //$_POST['connectProfile'] = $currentFeedProfile;
-          $_SESSION['currentFeedProfile'] = $currentFeedProfile;
-          getProfilePreview($currentFeedProfile);
-          getSwipeBar($currentFeedProfile);
+          //$_SESSION['currentFeedProfile'] = $currentFeedProfile;
+          //getProfilePreview($currentFeedProfile);
+          //getSwipeBar($currentFeedProfile);
         ?>
          <!-- Also need to add buttons so a user can swipe on profiles -->
      </div>
-   
-   <hr>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm">
@@ -182,17 +185,17 @@
                 $results2 = mysqli_query($conn,$sql2);
                 $row2 = mysqli_fetch_array($results2);
                 $currUserAge = $row2['Age'];
-                
+
                 //Suggested users based on age
                 //$sqlSugg1 = "SELECT * FROM profile WHERE Age <= ('$currUserAge'+3) AND Age >= ('$currUserAge'-3)";
                 //$sqlSugg1Result = mysqli_query($conn,$sqlSugg1);
-                
+
                 //foreach($sqlSugg1Result as $userResults){
                 //    $userDisplay = $userResults['email'];
                 //    getProfilePreview($userDisplay);
                 //    getSwipeBar($userDisplay);
                 //}
-                
+
                 //Suggested users based on interest and age combined
                 $sql3 = "SELECT * FROM Interests WHERE UserID = '$UserID'";
                 $results3 = mysqli_query($conn,$sql3);
@@ -223,13 +226,27 @@
                         $handleFinal = $handle['Handle'];
                         getProfilePreview($handleFinal);
                         getSwipeBar($handleFinal);
-                    }  
+                    }
                 }
-                
+
                 ?>
             </div>
             <div class="col-sm">
                 <h4> Random Users </h4>
+                <?php
+                    $sqlRand = "SELECT email FROM profile WHERE UserID != '$UserID'";
+                    $sqlRandRes = mysqli_query($conn,$sqlRand);
+                    foreach($sqlRandRes as $allUsers){
+                        $userMail = $allUsers['email'];
+                        $randomNum = rand(0,1);
+                        if($randomNum == 0){
+                            getProfilePreview($userMail);
+                            getSwipeBar($userMail);
+                        } else if($randomNum == 1){
+                            //Do nothing
+                        }
+                    }
+                ?>
             </div>
         </div>
      </div>
