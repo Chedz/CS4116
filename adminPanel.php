@@ -144,6 +144,14 @@
                                                               $row2 = mysqli_fetch_array($results2);
                                                                   $tempMail = $row2['email'];
                                                                   getProfilePreview($tempMail);
+                                                            ?>
+                                                                  <div class="row justify-content-center">
+                                                                  <form action="adminProfileEdit.php" method="post">
+                                                                  <input type="submit" name="buttonSelectUser" class="btn btn-primary" value="<?php echo $tempUserID;?>"/>
+                                                                  
+                                                                  </form>
+                                                                  </div>
+                                                                <?php
                                                                   printf("<br>");
                                                           }
                                                       } else { //If interest has not been selected, do the standard search with filters
@@ -176,10 +184,12 @@
                                                                   //     <input id="coffee-submit" type="submit" name="submit" value="Coffee">
                                                                   // </form>
                                                                   ?>
+                                                                  <div class="row justify-content-center">
                                                                   <form action="adminProfileEdit.php" method="post">
                                                                   <input type="submit" name="buttonSelectUser" class="btn btn-primary" value="<?php echo $tempUserID;?>"/>
                                                                   
                                                                   </form>
+                                                                  </div>
                                                                 <?php
                                                                   printf("<br>");
               					    }
