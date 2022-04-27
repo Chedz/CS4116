@@ -1,17 +1,28 @@
 <?php
     require_once 'includes/dbh.inc.php';
-    $tempUserID = $_SESSION['username'];
     $conn = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
-    $sqlBanned = "SELECT * FROM profile WHERE email = '$tempUserID'";
-    $sqlBannedRes = mysqli_query($conn,$sqlBanned);
-    $rowBan = mysqli_fetch_array($sqlBannedRes);
-    $isBanned = $rowBan['Banned'];
-    if($isBanned == NULL || $isBanned == 0){
-        //Redirect, user is not banned
-        header("location: home.php");
-    } else if($isBanned == 1){
-        //User is banned, redirect
-        echo "User Banned, please sign out";
-    }
-    $conn->close();
+    session_start();
+    if(array_key_exists('buttonLogOut', $_POST)) {
+            logUserOut();
+        }
+    function logUserOut() {
+      //echo "This is Button1 that is selected";
+      $_SESSION = array();
+      session_destroy();
+      header("location: login.php");
+  }
+   
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<p>User banned, please sign out.</p>
+
+<form method="post">
+             <input type="submit" name="buttonLogOut"
+                     class="btn btn-primary" value="Logout" />
+</form>
+</body>
+</html>
