@@ -17,6 +17,7 @@
 
         if(array_key_exists('buttonSelectUser', $_POST)) {
             //Testing
+            
             $selectedProfile = $_POST['buttonSelectUser'];
             $_SESSION['selectedProfile'] = $selectedProfile;
         }
@@ -58,12 +59,14 @@
     <br>
 
     <div class="container">
-        <form method="POST">
+    <form method="POST" action="adminAction.php">
             <input type="submit" name="deleteUser" class="btn btn-primary" value="Delete User"/>
             <input type="submit" name="banUser" class="btn btn-primary" value="Ban User"/>
             <input type="submit" name="unbanUser" class="btn btn-primary" value="Unban User"/>
           </form>
+          
         <div class="row">
+        
         <div class="col" id="div1" style="border-radius: 25px; border: 2px solid purple;">
             <h5>Update User Profile</h5>
             <form action="adminEditUserProfile.php" method="POST" enctype="multipart/form-data">

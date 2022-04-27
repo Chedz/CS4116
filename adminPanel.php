@@ -11,10 +11,6 @@
       session_destroy();
       header("location: adminLogin.php");
   }
-
-  function editProfile() {
-    header('location: adminProfileEdit.php');
-  }
  ?>
 
 <!DOCTYPE html>
@@ -144,7 +140,7 @@
                                                               $row2 = mysqli_fetch_array($results2);
                                                                   $tempMail = $row2['email'];
                                                                   getProfilePreview($tempMail);
-                                                            ?>
+                                                                  ?>
                                                                   <div class="row justify-content-center">
                                                                   <form action="adminProfileEdit.php" method="post">
                                                                   <input type="submit" name="buttonSelectUser" class="btn btn-primary" value="<?php echo $tempUserID;?>"/>
@@ -163,27 +159,7 @@
                                                                   $tempMail = $row2['email'];
                                                                   getProfilePreview($tempMail);
                                                                   // printf('<form action="search.php" method="POST">')
-                                                                  // </form>
-
-                                                                  // printf('<form method="post">');
-                                                                  // printf('<input type="submit" name="buttonEdit')
-                                                                  // printf($tempUserID);
-                                                                  // printf('" class="btn btn-primary" value="Edit Profile" />');
-                                                                  // printf('</form>');
-
-                                                                  // <form action="" method="post">
-                                                                  //     <input type="hidden" name="action" value="submit" />
-                                                                  //     <select name="name">
-                                                                  //         <option>John</option>
-                                                                  //         <option>Henry</option>
-                                                                  //     <select>
-                                                                  // <!--
-                                                                  // make sure all html elements that have an ID are unique and name the buttons submit
-                                                                  // -->
-                                                                  //     <input id="tea-submit" type="submit" name="submit" value="Tea">
-                                                                  //     <input id="coffee-submit" type="submit" name="submit" value="Coffee">
-                                                                  // </form>
-                                                                  ?>
+                                                                  // </form>?>
                                                                   <div class="row justify-content-center">
                                                                   <form action="adminProfileEdit.php" method="post">
                                                                   <input type="submit" name="buttonSelectUser" class="btn btn-primary" value="<?php echo $tempUserID;?>"/>
@@ -191,6 +167,7 @@
                                                                   </form>
                                                                   </div>
                                                                 <?php
+
                                                                   printf("<br>");
               					    }
                                                       }

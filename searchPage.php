@@ -4,7 +4,8 @@ require_once 'includes/dbh.inc.php';
     session_start();
 
     $search = $_POST['search'];
-    $age = $_POST['age'];
+    $ageMin = $_POST['ageMin'];
+    $ageMax = $_POST['ageMax'];
     $smoker = $_POST['smoker'];
     $gender = $_POST['gender'];
     $interests = $_POST['interestsSearch']; //Gets ID value of searched interest
@@ -18,8 +19,8 @@ require_once 'includes/dbh.inc.php';
         //Filters
         if(isset($search)){ //Search bar + age set
             $sqlFiltered = "SELECT * FROM profile WHERE (Firstname LIKE '%$search%' OR Surname LIKE '%$search%')";
-            if(isset($age)){
-                $sqlFiltered = $sqlFiltered .  " AND Age <= '$age'";
+            if(isset($ageMax)){
+                $sqlFiltered = $sqlFiltered .  " AND Age <= '$ageMax' AND Age >= '$ageMin'";
                 if(isset($smoker)){
                     $sqlFiltered = $sqlFiltered . " AND Smoker = '$smoker'";
                     if(isset($gender)){

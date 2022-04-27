@@ -37,7 +37,7 @@
   padding-left: 15px;
   padding-bottom: 50px;
   margin-top: 30px;
-
+  
   }
 
 
@@ -183,7 +183,8 @@
                         <input type="text" name="description" class="form-control" id="description" placeholder="Describe yourself" value="<?php echo $row['Description'];?>"/>
                     </div>
                     <div class="form-group">
-                        <input type="file" name="userImage" id="userImage" class="form-control"/>
+                        <input type="file" name="userImage" id="userImage" class="form-control" required/>
+                        <label for="file">Choose an image</label>
                     </div>
 
 
@@ -303,7 +304,7 @@
                         <input type="text" name="description" class="form-control" id="description" placeholder="Describe yourself" value="<?php echo $row['Description'];?>"/>
                     </div>
                     <div class="form-group">
-                        <input type="file" name="userImage" id="userImage" class="form-control"/>
+                        <input type="file" name="userImage" id="userImage" class="form-control" required/>
                     </div>
 
 

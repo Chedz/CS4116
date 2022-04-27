@@ -45,7 +45,7 @@
             $errPass = '<p class="errText">Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit</p>';
             echo '<div class="alert alert-danger alert-dismissisble fade show" role="alert"><strong>Uh Oh! </strong>Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit
                   <a href="/index.php"><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    
+                    Try Again
                     </button></a>
                     </div>'; 
         } else if($_POST['password'] != $_POST['cpassword']){      
@@ -59,7 +59,7 @@
             values(?,?,?,?)");
             $stmt->bind_param("ssss",$email, $password, $firstname, $surname);
             $stmt->execute();
-            header("Refresh:3; url=login.php");
+            header("Refresh:2; url=login.php");
             echo "User registered, redirecting to login";
             $stmt->close();
             $conn->close();
