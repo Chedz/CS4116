@@ -225,11 +225,13 @@
             <form method="post">
                 <input type="submit" name="buttonSwipeLeft"
                         class="btn btn-primary" value="Swipe Left" id="dislike"/>
+                <input type="hidden" id="postUserEmail" name="postUserEmail" value="<?php echo $userEmail;?>">
             </form>
 
             <form method="post">
                 <input type="submit" name="buttonSwipeRight"
                         class="btn btn-primary" value="Swipe Right" id="like"/>
+                <input type="hidden" id="postUserEmail" name="postUserEmail" value="<?php echo $userEmail;?>">
             </form>
           </div>
 

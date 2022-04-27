@@ -115,11 +115,13 @@
       $socialConn->close();
      }
 
-     $tempUserID = $_SESSION['username'];
-                $sql1 = "SELECT UserID FROM user WHERE Handle = '$tempUserID'";
-                $results1 = mysqli_query($matchConn,$sql1);
-                $row1 = mysqli_fetch_array($results1);
-                $currUserID = $row1['UserID']; //initiated connection
+     // $tempUserID = $_SESSION['username'];
+     //            $sql1 = "SELECT UserID FROM user WHERE Handle = '$tempUserID'";
+     //            $results1 = mysqli_query($matchConn,$sql1);
+     //            $row1 = mysqli_fetch_array($results1);
+     //            $currUserID = $row1['UserID']; //initiated connection
+
+    $currUserID = $_SESSION['userID'];
 
 
 
@@ -148,11 +150,11 @@
              // echo $user2;
 
              if ($currUserID = $row['userID1']){ //select id of user that is not curUser
-               $matchUserId = $row['userID1'];
-             } else {
                $matchUserId = $row['userID2'];
+             } else {
+               $matchUserId = $row['userID1'];
              }
-             array_push($totalMatchIds, $matchUserId); //push userId of other user within match to array
+             array_push($totalMatchIds, $row['userID2']); //push userId of other user within match to array
              // echo "pushed row ";
              // echo $matchUserId;
            }

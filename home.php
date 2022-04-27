@@ -37,13 +37,19 @@
                 $User1ID = $row1['UserID']; //initiated connection
                 //echo $User1ID;
 
-                //$currentFeedProfile = $_POST['connectProfile'];
-                $currentFeedProfile = $_SESSION['currentFeedProfile'];
-                $sql1 = "SELECT UserID FROM user WHERE Handle = '$currentFeedProfile'";
-                $results1 = mysqli_query($conn,$sql1);
-                $row1 = mysqli_fetch_array($results1);
-                $User2ID = $row1['UserID']; //received connection
-                //echo $User2ID;
+                //echo $_POST['postUserEmail'];
+                $currUser = $_POST['postUserEmail'];
+                        $sql = "SELECT UserID FROM user WHERE Handle = '$currUser'";
+                        $results = mysqli_query($conn,$sql);
+                        $row1 = mysqli_fetch_array($results);
+                        $User2ID = $row1['UserID'];
+                // //$currentFeedProfile = $_POST['connectProfile'];
+                // $currentFeedProfile = $_SESSION['currentFeedProfile'];
+                // $sql1 = "SELECT UserID FROM user WHERE Handle = '$currentFeedProfile'";
+                // $results1 = mysqli_query($conn,$sql1);
+                // $row1 = mysqli_fetch_array($results1);
+                // $User2ID = $row1['UserID']; //received connection
+                // //echo $User2ID;
 
 
                 $sql = "SELECT * FROM Connections WHERE userID1  = '$User2ID' AND userID2  = '$User1ID'"; //check if user2 has already attempted to connect with user1 previously
@@ -106,7 +112,7 @@
         header("location: userBanned.php");
     }
     $conn->close();
-    
+
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -254,17 +260,31 @@
 
 
                           foreach ($checkMatch as $previousMatch) {
-                            if ($finalUserIDTemp == $previousMatch) {
+                            if ($userDisplay1 == $previousMatch) {
                                 //already existing connection sent, do nothing
                             }else {
+                              $sqlFinal = "SELECT * FROM Connections WHERE userID1 = '$userDisplay1' AND userID2 = '$currUserID'"; //check if user2 has already attempted to connect with user1 previously
+                              $checkMatch2 = mysqli_query($conn, $sqlFinal);
+                              foreach ($checkMatch2 as $previousMatch2) {
+                                if ($userDisplay1 == $previousMatch2) {
+                                        //do nothing
+                                }else {
+                                  $sql5 = "SELECT Handle FROM user WHERE UserID = '$userDisplay1'";
+                                  $results5 = mysqli_query($conn,$sql5);
+                                  $handle = mysqli_fetch_array($results5);
+                                  $handleFinal = $handle['Handle'];
+                                  getProfilePreview($handleFinal);
+                                  getSwipeBar($handleFinal);
+                                }
+                              }
                               //Display users who match interest and age requirement
                               //$finalUserID = $finalUserIDTemp['UserID'];
-                              $sql5 = "SELECT Handle FROM user WHERE UserID = '$userDisplay1'";
-                              $results5 = mysqli_query($conn,$sql5);
-                              $handle = mysqli_fetch_array($results5);
-                              $handleFinal = $handle['Handle'];
-                              getProfilePreview($handleFinal);
-                              getSwipeBar($handleFinal);
+                              // $sql5 = "SELECT Handle FROM user WHERE UserID = '$userDisplay1'";
+                              // $results5 = mysqli_query($conn,$sql5);
+                              // $handle = mysqli_fetch_array($results5);
+                              // $handleFinal = $handle['Handle'];
+                              // getProfilePreview($handleFinal);
+                              // getSwipeBar($handleFinal);
                             }
                           }
                         }else {
@@ -304,6 +324,36 @@
                         $userMail = $allUsers['email'];
                         $randomNum = rand(0,1);
                         if($randomNum <= 6){
+
+                        //   //check if existing connection
+                        //   $currUserID = $_SESSION['userID'];
+                        //   $sql6 = "SELECT * FROM Connections WHERE userID1 = '$currUserID' AND userID2 = '$userDisplay1'"; //check if user2 has already attempted to connect with user1 previously
+                        //   $checkMatch = mysqli_query($conn, $sql6);
+                        //
+                        //   if(mysqli_num_rows($checkMatch)>0){
+                        //
+                        //
+                        //   foreach ($checkMatch as $previousMatch) {
+                        //     if ($userDisplay1 == $previousMatch) {
+                        //         //already existing connection sent, do nothing
+                        //     }else {
+                        //       $sqlFinal = "SELECT * FROM Connections WHERE userID1 = '$userDisplay1' AND userID2 = '$currUserID'"; //check if user2 has already attempted to connect with user1 previously
+                        //       $checkMatch2 = mysqli_query($conn, $sqlFinal);
+                        //       foreach ($checkMatch2 as $previousMatch2) {
+                        //         if ($userDisplay1 == $previousMatch2) {
+                        //                 //do nothing
+                        //         }else {
+                        //           getProfilePreview($userMail);
+                        //           getSwipeBar($userMail);
+                        //         }
+                        //       }
+                        //     }
+                        //   }
+                        // }
+
+
+
+
                             getProfilePreview($userMail);
                             getSwipeBar($userMail);
                         } else if($randomNum > 6 && $randomNum <= 10){

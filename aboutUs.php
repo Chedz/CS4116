@@ -3,7 +3,7 @@
   // $mysqli = createConnection("sql100.epizy.com", "epiz_31242413", "WbIh2OaPZju", "epiz_31242413_project_database");
 
   session_start();
-  if(empty($_SESSION['loggedin'])){ header("location: login.php");}  //check if user not logged in, re-direct to login
+  //if(empty($_SESSION['loggedin'])){ header("location: login.php");}  //check if user not logged in, re-direct to login
 
   if(array_key_exists('buttonLogOut', $_POST)) {
       logUserOut();
