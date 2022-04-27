@@ -303,10 +303,10 @@
                     foreach($sqlRandRes as $allUsers){
                         $userMail = $allUsers['email'];
                         $randomNum = rand(0,1);
-                        if($randomNum == 0){
+                        if($randomNum <= 6){
                             getProfilePreview($userMail);
                             getSwipeBar($userMail);
-                        } else if($randomNum == 1){
+                        } else if($randomNum > 6 && $randomNum <= 10){
                             //Do nothing
                         }
                     }
